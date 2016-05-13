@@ -1,0 +1,26 @@
+<?php
+namespace App\Http\Requests;
+use Illuminate\Foundation\Http\FormRequest;
+use Auth;
+use Response;
+class AdminForm extends FormRequest
+{
+    public function rules()
+    {
+
+    }
+    public function authorize()
+    {
+        return Auth::check();
+    }
+
+    // 可选: 重写基类方法
+    public function forbiddenResponse()
+    {
+        //  可选的, 当认证失败时返回自定义的 HTTP 响应.
+        // (框架默认的行为是带着错误信息返回到起始页面)
+        // 可以返回 Response 实例, 视图, 重定向或其它信息
+        return Response::make('Permission denied foo!', 403);
+    }
+
+}
