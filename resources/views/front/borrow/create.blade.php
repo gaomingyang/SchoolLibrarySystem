@@ -120,9 +120,11 @@
 				    <div class="col-md-offset-2 col-md-10">
 				    	<button class="btn btn-primary" type="submit" id="borrowSubmit">确定</button>
 				    	<span id="message"></span>
+
 				    </div>
 				</div>
 			</form>
+			<input type="hidden" id="allowNumber" value="0">
 
 		</div>
 	</div>
@@ -269,7 +271,8 @@ $(function(){
 
 	$(".bookform").submit(function(){
 		var student_id = $("#student_id").val();
-		var book_id = ("input[name=book_id]")
+		var book_id = $("input[name=book_id]").val();
+		var allowNumber =$("#allowNumber").val();
 
 		if (student_id == 0 || student_id == '') {
 			alert('没有选择学生！');
@@ -277,13 +280,17 @@ $(function(){
 		}
 		// var hasBook = $.contains($("input:checked"),$(".bookform"));
 		// var hasBook = $("bookform input:checkbox")
-		var n = $( "input:checked" ).length;
+		var n = $("input[name='book_id[]']:checked" ).length;
 		if (n < 1) {
 			alert('没有添加书！');
 			event.preventDefault();
 		}
-	});
 
+		if(n > allowNumber) {
+			alert('借书额度只剩下' + allowNumber + '本,不能借' + n + '本书');
+			event.preventDefault();
+		}
+	});
 });
 
 function addOrSearch()
@@ -301,6 +308,8 @@ function addOrSearch()
 		$("#searchWithName").attr('checked',true);
 		searchBook();
 	}
+
+	$("#keyword").val('');
 
 	// if (isNaN(keyword)) {
 	// 	alert('number');
@@ -346,11 +355,15 @@ function addBook()
 			book = eval('('+data+')');
 			// console.log(book);
 
-			$("<div href=\"\" class=\"btn btn-default seledBook"+book.id+" \">"+book.name+"&nbsp;<a href=\"javascript:removeSeledBook("+book.id+");\" class=\"close\">x</a></div>").appendTo(".seledBooks");
+			$("<div href=\"\" data-toggle=\"tooltip\" data-placement=\"top\" title=\""+book.id+"\"   class=\"btn btn-default seledBook"+book.id+" \">"+book.name+"&nbsp;<a href=\"javascript:removeSeledBook("+book.id+");\" class=\"close\">x</a></div>").appendTo(".seledBooks");
 
 			$("<input type=\"checkbox\" checked=\"checked\" style=\"display: none;\" name=\"book_id[]\" value=\""+book.id+"\" id=\"selBook"+book.id+"\">").appendTo(".bookform");
+
+			$('[data-toggle="tooltip"]').tooltip();
 		}
 	});
+
+
 
 }
 
@@ -414,7 +427,7 @@ function sel(id){
 				$("#borrowSubmit").attr('disabled',true);
 				$("#message").html("<span style='color: red;'><i class='fa fa-times'></i>借书额度已用完，需先归还才可再借。</span>");
 			}
-
+			$("#allowNumber").val(allowNumber);
 		},
 		error: function(msg)
 		{
@@ -456,6 +469,7 @@ function addSeledBook()
 
 	$("#keyword").val('');
 	$(".searchedbooks").html('');
+
 }
 
 //未登记图书  登记并借
@@ -483,5 +497,6 @@ function removeSeledBook(id)
 	$(".seledBook"+id).fadeOut();
 	$("#selBook"+id).remove();
 }
+
 </script>
 @endsection
