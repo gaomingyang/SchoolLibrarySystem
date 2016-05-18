@@ -85,13 +85,15 @@
                         <td>备注</td>
                     </tr>
 
+                    @foreach($book->borrowed as $b)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$b->student->grade->name}}</td>
+                        <td>{{$b->student->name}}</td>
+                        <td>{{$b->borrow_time}}</td>
+                        <td>{{$b->return_time}}</td>
+                        <td>{{$b->comment}}</td>
                     </tr>
+                    @endforeach
                 </table>
 
 

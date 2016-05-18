@@ -118,7 +118,8 @@
 
 				<div class="form-group" style="">
 				    <div class="col-md-offset-2 col-md-10">
-				    	<button class="btn btn-primary" type="submit">确定</button>
+				    	<button class="btn btn-primary" type="submit" id="borrowSubmit">确定</button>
+				    	<span id="message"></span>
 				    </div>
 				</div>
 			</form>
@@ -400,6 +401,28 @@ function sel(id){
 		$("#selGender").fadeOut();
 	}
 	$("#student_id").val(id);
+	$("#borrowSubmit").attr('disabled',false);
+	$("#message").html('');
+
+	$.ajax({
+		url:'/student/checkallow/'+id,
+		type:"get",
+		// data:{id:id},
+		success: function(allowNumber)
+		{
+			if (allowNumber <= 0) {
+				$("#borrowSubmit").attr('disabled',true);
+				$("#message").html("<span style='color: red;'><i class='fa fa-times'></i>借书额度已用完，需先归还才可再借。</span>");
+			}
+
+		},
+		error: function(msg)
+		{
+			console.log(arguments);
+		}
+	});
+
+
 }
 
 //取消添加 已登记图书

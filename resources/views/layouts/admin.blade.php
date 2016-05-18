@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>大顺小学图书管理系统</title>
+    <title><?php echo App\System::system_name()?></title>
 
     <!-- Fonts -->
    <!--  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -21,13 +21,13 @@
           /*min-height: 2000px;*/
           padding-top: 70px;
         }
-        
+
     </style>
     @yield('css')
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top ">
+        <div class="container-fluid">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
@@ -39,9 +39,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/admin') }}">
-                    大顺小学图书管理系统
-                </a>
+                <a class="navbar-brand" href="{{ url('/admin') }}"><?php echo App\System::system_name()?></a>
             </div>
 
             <div class="collapse navbar-collapse" id="spark-navbar-collapse">
@@ -88,16 +86,18 @@
                 <li ><a href="/admin/category">图书分类</a></li>
                 <li ><a href="/admin/tag">图书标签</a></li>
            </ul>
-           <ul class="nav nav-sidebar"> <!--借还 -->
-               <!-- <li class="disabled"><a href="">借还</a></li> -->
+           <ul class="nav nav-sidebar">
                <li><a href="/admin/borrowed">借出书单</a></li>
                <li><a href="/admin/returned">已还书单</a></li>
                <li><a href="/admin/borrowlog">借书记录</a></li>
            </ul>
-           <ul class="nav nav-sidebar"> <!--学生 -->
+           <ul class="nav nav-sidebar">
                <li><a href="/admin/grade">班级管理</a></li>
                <li><a href="/admin/student">学生列表</a></li>
-               <li><a href="/admin/student/create">增加学生</a></li>
+           </ul>
+           <ul class="nav nav-sidebar">
+               <li><a href="/admin/system">系统设置</a></li>
+               <li><a href="/admin/">账号管理</a></li>
            </ul>
 
         </div>

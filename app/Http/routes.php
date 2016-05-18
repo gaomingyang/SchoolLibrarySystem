@@ -14,9 +14,11 @@ Route::get('/book/searchbykw/{keyword}','BookController@searchbykw');   //borrow
 Route::get('/book/borrowinfo/{kw}','BookController@borrowinfo');
 
 //student
-Route::get('/stuByGrade/{grade_id}','StudentController@stuByGrade');
+Route::get('stuByGrade/{grade_id}','StudentController@stuByGrade');
+Route::get('student/{id}','StudentController@show');
 Route::post('student/ajaxupdategender','StudentController@ajaxUpdateGender');
-Route::get('/student/{id}','StudentController@show');
+Route::get('student/checkallow/{id}','StudentController@checkallow');
+
 
 //borrow
 Route::resource('borrow','BorrowController');
@@ -52,10 +54,32 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
 	Route::get('borrowlog','Admin\BorrowController@borrowlog');
 
     Route::get('book/trashed','Admin\BookController@trashed');
+	Route::get('student/trashed','Admin\StudentController@trashed');
+	Route::get('student/{id}/restore','Admin\StudentController@restore');
+	
     Route::resource('book','Admin\BookController');
 	Route::resource('category','Admin\CategoryController');
 	Route::resource('tag','Admin\TagController');
     Route::resource('grade','Admin\GradeController');
     Route::resource('student','Admin\StudentController');
 
+    Route::resource('system','Admin\SystemController',['only'=>['index','update']]);
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

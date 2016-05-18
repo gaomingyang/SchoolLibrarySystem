@@ -98,5 +98,25 @@ class StudentController extends Controller
         return Redirect::to('admin/student');
     }
 
+    //回收站
+    public function trashed()
+    {
+        $students = Student::onlyTrashed()->get();
+        $number = count($students);
+        return view('admin.student.trashed',compact('students','number'));
+    }
+
+    public function restore($id)
+    {
+        if (Student::onlyTrashed()->where('id',$id)->restore()) {
+            Session::flash('flash_message','恢复成功！');
+            return Redirect::to('admin/student/trashed');
+        }else{
+            echo "fail";
+        }
+        
+    }
+
+
 
 }

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>大顺图书室</title>
+    <title><?php echo App\System::system_name()?></title>
     <link href="/css/bootstrap.css" rel="stylesheet">
 
     <style>
@@ -33,20 +33,21 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    大顺小学图书管理系统
+                    <?php echo App\System::system_name()?>
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="spark-navbar-collapse">
                 <!-- Left Side Of Navbar -->
 
-
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">登录</a></li>
+                        @if(Config::get('credentials.regallowed'))
                         <li><a href="{{ url('/register') }}">注册</a></li>
+                        @endif
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

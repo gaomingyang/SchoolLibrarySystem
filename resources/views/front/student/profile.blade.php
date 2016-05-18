@@ -1,16 +1,15 @@
-@extends('layouts.admin')
+@extends('layouts.front')
 
 
 @section('content')
+<div class="col-sm-10 col-sm-offset-1">
+
+
 <div class="page-header">
     <h3>{{$student->name}}</h3>
 </div>
 
 <div >
-    <div class="pull-right">
-        <a href="/admin/student/{{$student->id}}/edit" class="btn btn-info btn-sm">编辑</a>
-        <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#d_{{$student->id}}">删除</a>
-    </div>
     <div class="row">
         <label class="col-xs-12 col-sm-1 ">姓名</label>
         <div class="col-xs-12 col-sm-6">
@@ -18,15 +17,15 @@
         </div>
     </div>
     <div class="row">
-        <label class="col-xs-12 col-sm-1 ">班级</label>
-        <div class="col-xs-12 col-sm-6">
-            <p class="">{{$student->grade->name}}</p>
-        </div>
-    </div>
-    <div class="row">
         <label class="col-xs-12 col-sm-1 ">性别</label>
         <div class="col-xs-12 col-sm-6">
             <p class="">{{$student->gendername()}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-xs-12 col-sm-1 ">班级</label>
+        <div class="col-xs-12 col-sm-6">
+            <p class="">{{$student->grade->name}}</p>
         </div>
     </div>
 </div>
@@ -69,9 +68,9 @@
     
 </div>
 
-@include('admin.student.delete')
-@endsection
 
-@section('js')
-<script src="{{ asset('js/dform.js') }}"></script>
+
+</div>
+
+
 @endsection

@@ -62,9 +62,6 @@
                             <td>{{$b->comment}}</td>
                         </tr>
                         @endforeach
-                
-
-
                 </table>
 
 

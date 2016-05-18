@@ -4,8 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="图书管理系统">
-        <meta name="author" content="高明阳">
-        <title>大顺小学图书室</title>
+        <title><?php echo App\System::front_name()?></title>
         <link rel="stylesheet" type="text/css" href="/css/front.css" >
         <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css" >
         <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-theme.css" >
@@ -34,7 +33,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/">大顺小学图书室</a>
+              <a class="navbar-brand" href="/"><?php echo App\System::front_name()?></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">

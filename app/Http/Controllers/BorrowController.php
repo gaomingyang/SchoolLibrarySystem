@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Borrow;
 use App\Student;
+use App\System;
 use Carbon\Carbon;
 use Redirect,Validator;
 
@@ -101,8 +102,21 @@ class BorrowController extends Controller
     {
         $borroweds = Borrow::where('return_time',null)->orderBy('id', 'desc')->paginate(200);
         $number = $borroweds->count();
-        $title="借出书单";
-    	return view('front.borrow.index',compact('borroweds','number','title'));
+
+        // $today = date('Y-m-d');
+        $period = System::first()->borrow_days_limit;
+
+        // $stone = date('Y-m-d',"-$period days");
+        // echo $stone;
+        // $t = Carbon::now();
+        // echo $t;
+
+        $t =  new Carbon('-'.$period.' days');
+        // echo $t->toDateString();
+        $delayeds = Borrow::where('borrow_time','<=',$t)->where('return_time',null)->orderBy('borrow_time','asc')->get();
+        // print_r($delayeds);
+        
+    	return view('front.borrow.borrowed',compact('borroweds','number','delayeds'));
     }
 
     public function returned(Request $request)
