@@ -10,7 +10,7 @@ class System extends Model
     protected $table="system";
     // protected $primaryKey = null;
     // public $incrementing = false;
-    
+
     protected $fillable=['front_name','system_name','borrow_number_limit','borrow_days_limit'];
     public $timestamps=false;
 
@@ -22,5 +22,10 @@ class System extends Model
     	$system = System::first();
     	return $system->system_name;
     }
-   
+
+    public static function borrow_number_limit(){
+        $system=System::first();
+        return $system->borrow_number_limit;
+    }
+
 }

@@ -56,7 +56,8 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
     Route::get('book/trashed','Admin\BookController@trashed');
 	Route::get('student/trashed','Admin\StudentController@trashed');
 	Route::get('student/{id}/restore','Admin\StudentController@restore');
-	
+
+    Route::resource('user','Admin\UserController');
     Route::resource('book','Admin\BookController');
 	Route::resource('category','Admin\CategoryController');
 	Route::resource('tag','Admin\TagController');
@@ -66,20 +67,3 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
     Route::resource('system','Admin\SystemController',['only'=>['index','update']]);
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

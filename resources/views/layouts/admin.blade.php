@@ -65,6 +65,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="">修改密码</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>退出</a></li>
                             </ul>
                         </li>
@@ -97,7 +98,7 @@
            </ul>
            <ul class="nav nav-sidebar">
                <li><a href="/admin/system">系统设置</a></li>
-               <li><a href="/admin/">账号管理</a></li>
+               <li><a href="/admin/user">账号管理</a></li>
            </ul>
 
         </div>

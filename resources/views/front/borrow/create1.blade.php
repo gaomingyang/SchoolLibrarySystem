@@ -256,18 +256,18 @@ $(function(){
 		}
 	});
 
-	// $("#bookname").focusout(function(){
-	// 	var bookname = $("#bookname").val();
-	// 		if ($.trim(bookname) != '') {
-	// 			$.get('/book/ajaxrepeat',{'name':bookname},function(data){
-	// 				if (data == 'repeat') {
-	// 					$(".name_warning").html('发现同名书籍，<a href="/books/name/'+bookname+'" target="_blank">点击查看</a>');
-	// 				}else{
-	// 					$(".name_warning").html('');
-	// 				}
-	// 			});
-	// 		}
-	// });
+	$("#bookname").focusout(function(){
+		var bookname = $("#bookname").val();
+			if ($.trim(bookname) != '') {
+				$.get('/book/ajaxrepeat',{'name':bookname},function(data){
+					if (data == 'repeat') {
+						$(".name_warning").html('发现同名书籍，<a href="/books/name/'+bookname+'" target="_blank">点击查看</a>');
+					}else{
+						$(".name_warning").html('');
+					}
+				});
+			}
+	});
 
 	$(".bookform").submit(function(){
 		var student_id = $("#student_id").val();
@@ -341,9 +341,7 @@ function addOrSearch()
 
 function addBook()
 {
-	//check if number over the limit
-	$borrow_limit_number = <?php echo App\System::borrow_number_limit()?>;
-
+	// alert(kw);
 	var kw = $.trim($("#keyword").val());
 	$.get('/book/searchbyid/'+kw,function(data){
 		if (data == 'empty') {
