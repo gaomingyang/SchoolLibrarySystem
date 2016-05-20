@@ -131,6 +131,31 @@
 </div>
 
 
+<div class="modal fade" id="createReturnBook">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="close">
+				<span aria-hidden="true">&times;</span></button>
+	        	<h4 class="modal-title" id="myModalLabel">还书</h4>
+			</div>
+			<div class="modal-body" id="returnbooks">
+
+							<a href=""><<格林童话>>[1]</a>
+							<a href="#" class="btn btn-success ">还书</a>
+
+
+
+			</div>
+			<div class="modal-footer">
+	        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	    	</div>
+
+		</div>
+	</div>
+
+</div>
+
 
 
 <!-- Modal -->
@@ -427,7 +452,25 @@ function sel(id){
 		{
 			if (allowNumber <= 0) {
 				$("#borrowSubmit").attr('disabled',true);
-				$("#message").html("<span style='color: red;'><i class='fa fa-times'></i>借书额度已用完，需先归还才可再借。</span>");
+				$.get('/student/'+id+'/returnbook',function(data){
+
+					var booksinfo = '';
+					$("#reutrnbooks").html('');
+					$.each(data,function(k,v){
+						// var str = "<p ><label>"+v.name+'('+v.publisher+'&nbsp;'+v.author+')';
+						// // if (v.canBorrow ) {
+						// 	str +=
+						// 	"&nbsp;&nbsp;<input name=\"book\" bookname=\""+v.name+"\" bookid=\""+v.id+"\" type=\"checkbox\"> </label></p>";
+						// // }else{
+						// // 	str +=
+						// // 	"&nbsp;不可借</p>";
+						// // }
+						// // $(".searchedbooks").html(str);
+						// $(str).appendTo(".searchedbooks");
+					});
+
+				});
+				$("#message").html("<span style='color: red;'><i class='fa fa-times'></i>借书额度已用完，需先归还才可再借。</span><span style='color:blue;'>若已归还未登记，<a href='javascript:void(0)' data-toggle='modal' data-target='#createReturnBook' >点击登记</a></span>");
 			}
 			$("#allowNumber").val(allowNumber);
 		},
