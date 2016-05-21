@@ -106,6 +106,10 @@
 						<label class="radio-inline"><input type="radio" name="gender" value="1">男</label>&nbsp;&nbsp;
 						<label class="radio-inline"><input type="radio" name="gender" value="2">女</label>
 					</div>
+					<!-- <div id="returnNotice" style="display:none">
+						若已经还书，<a  id="returnuid" data-toggle="modal" data-target="#createReturnBook" data-uid="0" style="cursor:pointer">点击登记</a>
+					</div> -->
+					<div id="returnNotice"></div>
 				</div>
 
 				<div class="form-group">
@@ -139,12 +143,7 @@
 				<span aria-hidden="true">&times;</span></button>
 	        	<h4 class="modal-title" id="myModalLabel">还书</h4>
 			</div>
-			<div class="modal-body" id="returnbooks">
-
-				<!-- <a href=""><<格林童话>>[1]</a>
-				<a href="#" class="btn btn-success ">还书</a> -->
-
-
+			<div class="modal-body row" id="returnbooks">
 
 			</div>
 			<div class="modal-footer">
@@ -297,23 +296,25 @@ $(function(){
 	$('#createReturnBook').on('show.bs.modal', function (event) {
 		var button = $(event.relatedTarget);
 		var uid = button.data('uid');
-		
+		// alert(uid);
 		var books = '';
 		var username;
 		$.get('/student/'+uid+'/returnbooks',function(data){
 			console.log(data);
-			username = data.user.name;
+			username = data.user.name
+			// alert(username);
 			$.each(data.books,function(k,v){
-				books += '<p ><a >'+v.name+'</a> <a class="btn btn-success">还书</a></p>';
+				books += '<p class="col-sm-12"><a >'+v.name+'</a> <a class="btn btn-success pull-right">还书</a></p>';
 			});
 
-			
-
-		});
-
-		var modal = $(this);
+			var modal = $("#createReturnBook");
 			modal.find('.modal-title').text(username+'的借书单');
 			modal.find('.modal-body').html(books);
+		});
+
+		// var modal = $(this);
+		// 	modal.find('.modal-title').text(username+'的借书单');
+		// 	modal.find('.modal-body').html(books);
 
 		
 	});
@@ -469,16 +470,31 @@ function sel(id){
 	$("#borrowSubmit").attr('disabled',false);
 	$("#message").html('');
 
+
 	$.ajax({
 		url:'/student/checkallow/'+id,
 		type:"get",
 		// data:{id:id},
 		success: function(allowNumber)
 		{
-			if (allowNumber <= 0) {
+			if (allowNumber <= 0) 
+			{
 				$("#borrowSubmit").attr('disabled',true);
-				$("#message").html("<span style='color: red;'><i class='fa fa-times'></i>借书额度已用完，需先归还才可再借。</span><span style='color:blue;'>若已归还未登记，<a data-toggle='modal' data-target='#createReturnBook' data-uid='"+id+"' style='cursor:pointer'>点击登记</a></span>");
+				$("#message").html("<span style='color: red;'><i class='fa fa-times'></i>借书额度已用完，需先归还才可再借。</span>");
 			}
+
+			if(allowNumber < <?php echo App\System::borrow_number_limit()?>)
+			{
+				
+				// $("#returnuid").attr('data-uid',id);
+				// $("#returnNotice").fadeIn();
+				$("#returnNotice").html('若已经还书，<a  id="returnuid" data-toggle="modal" data-target="#createReturnBook" data-uid="'+id+'" style="cursor:pointer">点击登记</a>');
+			}else{
+				// $("#returnuid").attr('data-uid',0);
+				// $("#returnNotice").fadeOut();
+				$("#returnNotice").html('');
+			}
+
 			$("#allowNumber").val(allowNumber);
 		},
 		error: function(msg)
