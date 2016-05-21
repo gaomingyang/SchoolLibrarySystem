@@ -141,8 +141,8 @@
 			</div>
 			<div class="modal-body" id="returnbooks">
 
-							<a href=""><<格林童话>>[1]</a>
-							<a href="#" class="btn btn-success ">还书</a>
+				<!-- <a href=""><<格林童话>>[1]</a>
+				<a href="#" class="btn btn-success ">还书</a> -->
 
 
 
@@ -293,6 +293,31 @@ $(function(){
 	// 			});
 	// 		}
 	// });
+
+	$('#createReturnBook').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget);
+		var uid = button.data('uid');
+		
+		var books = '';
+		var username;
+		$.get('/student/'+uid+'/returnbooks',function(data){
+			console.log(data);
+			username = data.user.name;
+			$.each(data.books,function(k,v){
+				books += '<p ><a >'+v.name+'</a> <a class="btn btn-success">还书</a></p>';
+			});
+
+			
+
+		});
+
+		var modal = $(this);
+			modal.find('.modal-title').text(username+'的借书单');
+			modal.find('.modal-body').html(books);
+
+		
+	});
+
 
 	$(".bookform").submit(function(){
 		var student_id = $("#student_id").val();
@@ -452,25 +477,7 @@ function sel(id){
 		{
 			if (allowNumber <= 0) {
 				$("#borrowSubmit").attr('disabled',true);
-				$.get('/student/'+id+'/returnbook',function(data){
-
-					var booksinfo = '';
-					$("#reutrnbooks").html('');
-					$.each(data,function(k,v){
-						// var str = "<p ><label>"+v.name+'('+v.publisher+'&nbsp;'+v.author+')';
-						// // if (v.canBorrow ) {
-						// 	str +=
-						// 	"&nbsp;&nbsp;<input name=\"book\" bookname=\""+v.name+"\" bookid=\""+v.id+"\" type=\"checkbox\"> </label></p>";
-						// // }else{
-						// // 	str +=
-						// // 	"&nbsp;不可借</p>";
-						// // }
-						// // $(".searchedbooks").html(str);
-						// $(str).appendTo(".searchedbooks");
-					});
-
-				});
-				$("#message").html("<span style='color: red;'><i class='fa fa-times'></i>借书额度已用完，需先归还才可再借。</span><span style='color:blue;'>若已归还未登记，<a href='javascript:void(0)' data-toggle='modal' data-target='#createReturnBook' >点击登记</a></span>");
+				$("#message").html("<span style='color: red;'><i class='fa fa-times'></i>借书额度已用完，需先归还才可再借。</span><span style='color:blue;'>若已归还未登记，<a data-toggle='modal' data-target='#createReturnBook' data-uid='"+id+"' style='cursor:pointer'>点击登记</a></span>");
 			}
 			$("#allowNumber").val(allowNumber);
 		},

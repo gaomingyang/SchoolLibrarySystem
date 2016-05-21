@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Student;
+use App\Borrow;
 use App\System;
 use Redirect,Session,Validator;
 
@@ -57,15 +58,30 @@ class StudentController extends Controller
         // }else{
             // return 'deny';
         // }
-  
-
     }
 
+    /*
+     |--------------------------------------------------------------------------
+     | ajax return books
+     |--------------------------------------------------------------------------
+     |
+     */
+    public function returnbooks($id)
+    {
+        $result = array();
+        $student = Student::findOrFail($id);
+        $books = $student->borrow->where('return_time',null);
+     
+        $result['user'] = $student;
+        $booklist =array();
+        foreach ($books as $key => $book) {
+            $book['name'] = $book->book->name;
+            $booklist[] =$book;
+        }
+        $result['books'] = $booklist;
 
-
-
-
-
+        return $result;
+    }
 
 
 

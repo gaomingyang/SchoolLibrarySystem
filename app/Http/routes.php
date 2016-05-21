@@ -16,6 +16,8 @@ Route::get('/book/borrowinfo/{kw}','BookController@borrowinfo');
 //student
 Route::get('stuByGrade/{grade_id}','StudentController@stuByGrade');
 Route::get('student/{id}','StudentController@show');
+Route::get('student/{id}/returnbooks','StudentController@returnbooks');
+
 Route::post('student/ajaxupdategender','StudentController@ajaxUpdateGender');
 Route::get('student/checkallow/{id}','StudentController@checkallow');
 
