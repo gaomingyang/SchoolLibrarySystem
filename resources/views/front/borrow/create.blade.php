@@ -300,11 +300,11 @@ $(function(){
 		var books = '';
 		var username;
 		$.get('/student/'+uid+'/returnbooks',function(data){
-			console.log(data);
-			username = data.user.name
+			//console.log(data);
+			username = data.user.name;
 			// alert(username);
 			$.each(data.books,function(k,v){
-				books += '<p class="col-sm-12"><a >'+v.name+'</a> <a class="btn btn-success pull-right">还书</a></p>';
+				books += '<p class="col-sm-12"><a href="/book/'+v.book_id+'">'+v.name+'</a> <a href="javascript:returnBook('+v.id+')" class="btn btn-success pull-right rb'+v.id+'">还书</a></p>';
 			});
 
 			var modal = $("#createReturnBook");
@@ -564,6 +564,16 @@ function removeSeledBook(id)
 {
 	$(".seledBook"+id).fadeOut();
 	$("#selBook"+id).remove();
+}
+
+//还书
+function returnBook(id){
+	var token='{!! csrf_token() !!}';
+	$.post('/return',{'id':id,'_token':token},function(data){
+		if (data == 'success') {
+			$(".rb"+id).text('已归还').removeClass('btn-success').addClass('btn-default').addAttr('disabled');
+		}
+	});
 }
 
 </script>

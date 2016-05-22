@@ -37,7 +37,6 @@
 				$("tr.r"+id).fadeOut();
 			}
 		});
-
 	}
 </script>
 @endsection
