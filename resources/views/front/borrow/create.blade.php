@@ -310,6 +310,17 @@ function addOrSearch()
 	// console.log(typeof intkeyword)
 
 	if (intkeyword == keyword && length == 1) {
+
+		//check repeat;
+		if ($("#selBook"+intkeyword).length > 0) {
+			alert('编号'+intkeyword+'这本书已经添加过！');
+			return;
+		}		
+
+
+
+
+
 		addBook();
 	}else {
 		$("#searchWithName").attr('checked',true);
