@@ -315,11 +315,13 @@ function addOrSearch()
 		if ($("#selBook"+intkeyword).length > 0) {
 			alert('编号'+intkeyword+'这本书已经添加过！');
 			return;
-		}		
+		}
 
-
-
-
+		//check maxlength;
+		if($("input[name='book_id[]'][type=checkbox]").length >= <?php echo App\System::borrow_number_limit()?> ){
+			alert('超过最多借书数目限制!');
+			return;
+		}
 
 		addBook();
 	}else {
