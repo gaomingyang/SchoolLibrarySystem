@@ -122,15 +122,20 @@ class BorrowController extends Controller
     public function returned(Request $request)
     {
 
-        // if ($request->day == 'today') {
-        //     $data = Carbon::
-        // }else{
-        //
-        // }
+        if ($request->day == 'today') {
+            // $fromdate = date('Y-m-d',strtotime('-1 day'));
+            $fromdate = date('Y-m-d');
+            $fromdate .=' 00:00:00';
+            $title = '今日已还书单';
+        }else{
+            $fromdate = '0000-00-00 00:00:00';
+            $title = '全部已还书单';
+        }
 
-        $borroweds = Borrow::where('return_time','>','0000-00-00 00:00:00')->orderBy('return_time', 'desc')->paginate(200);
-        $number = $borroweds->count();
-        $title = '已还书单';
+
+        $borroweds = Borrow::where('return_time','>',$fromdate)->orderBy('return_time', 'desc')->paginate(200);
+        $number = Borrow::where('return_time','>',$fromdate)->count();
+        
     	return view('front.borrow.index',compact('borroweds','number','title'));
     }
 

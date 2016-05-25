@@ -51,7 +51,7 @@
 
               <ul class="nav navbar-nav ">
                   <li><a href="/borrowed">已借出</a></li>
-                  <li><a href="/returned">已归还</a></li>
+                  <li><a href="/returned/today">已归还</a></li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right">
