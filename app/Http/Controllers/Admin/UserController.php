@@ -22,6 +22,16 @@ class UserController extends Controller
         return view('admin.user.index',compact('users'));
     }
 
+    public function create()
+    {
+    	return view('admin.user.create');
+    }
+
+    public function store()
+    {
+        
+    }
+
 
 
 }
