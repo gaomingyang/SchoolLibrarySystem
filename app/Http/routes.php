@@ -35,6 +35,9 @@ Route::get('/success','BorrowController@success');
 Route::get('tag/{id}','TagController@show');
 
 
+//ranking list
+Route::get('ranks','FrontController@ranks');
+
 
 //后台   登记图书和学生信息，借书、还书的信息修改。
 // Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){

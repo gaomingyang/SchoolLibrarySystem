@@ -126,10 +126,10 @@ class BorrowController extends Controller
             // $fromdate = date('Y-m-d',strtotime('-1 day'));
             $fromdate = date('Y-m-d');
             $fromdate .=' 00:00:00';
-            $title = '今日已还书单';
+            $title = '今日已还图书';
         }else{
             $fromdate = '0000-00-00 00:00:00';
-            $title = '全部已还书单';
+            $title = '全部已还图书';
         }
 
 

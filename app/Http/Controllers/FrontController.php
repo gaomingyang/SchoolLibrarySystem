@@ -10,17 +10,18 @@ use App\Http\Controllers\Controller;
 use App\Book;
 use App\Borrow;
 use App\Student;
-use Redirect;
+use Redirect,DB;
 class FrontController extends Controller
 {
-	//前台主页
-    public function index(){
+
+    public function index()
+    {
         return view('front.index');
     }
 
-    //搜索图书
-    //返回结果页
-    public function search(Request $request){
+    //search books
+    public function search(Request $request)
+    {
         $keyword = $request->keyword;
 
         if(empty($keyword)){
@@ -40,13 +41,35 @@ class FrontController extends Controller
             $students = Student::where('name','like','%'.$keyword.'%')->get();
             $student_number = count($students);
             return view('front.searchresults',compact('books','keyword','book_number','students','student_number'));
+        }
+        exit;
+    }
 
+    //ranking list
+    public function ranks()
+    {
+        //students 
+        // $studentRank = Borrow::all()->groupBy('student_id')->orderBy('')->get();
+        $students = DB::table('borrow')->select('student_id',DB::raw('count(*) as total'))->groupBy('student_id')->orderBy('total','desc')->limit(10)->get();
+        foreach ($students as $key => $s) {
+            $student = Student::findOrFail($s->student_id);
+            $s->student = $student;
         }
 
-        exit;
+
+        //books
+        $books = DB::table('borrow')->select('book_id',DB::raw('count(*) as total'))->groupBy('book_id')->orderBy('total','desc')->limit(20)->get();
+        foreach ($books as $key => $b) {
+            $book = Book::findOrFail($b->book_id);
+            $b->name = $book->name;
+        }
 
 
 
+        //booksorts
+
+
+        return view('front.ranks',compact('students','books'));
     }
 
 
