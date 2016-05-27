@@ -60,8 +60,7 @@ class FrontController extends Controller
         //books
         $books = DB::table('borrow')->select('book_id',DB::raw('count(*) as total'))->groupBy('book_id')->orderBy('total','desc')->limit(20)->get();
         foreach ($books as $key => $b) {
-            $book = Book::findOrFail($b->book_id);
-            $b->name = $book->name;
+            $b->book = Book::findOrFail($b->book_id);
         }
 
 
@@ -70,6 +69,27 @@ class FrontController extends Controller
 
 
         return view('front.ranks',compact('students','books'));
+    }
+
+    public function studentrank()
+    {
+        $students = DB::table('borrow')->select('student_id',DB::raw('count(*) as total'))->groupBy('student_id')->orderBy('total','desc')->get();
+        foreach ($students as $key => $s) {
+            $student = Student::findOrFail($s->student_id);
+            $s->student = $student;
+        }
+        return view('front.ranks',compact('students'));
+
+
+    }
+
+    public function bookrank()
+    {
+        $books = DB::table('borrow')->select('book_id',DB::raw('count(*) as total'))->groupBy('book_id')->orderBy('total','desc')->get();
+        foreach ($books as $key => $b) {
+            $b->book = Book::findOrFail($b->book_id);
+        }
+        return view('front.ranks',compact('books'));
     }
 
 

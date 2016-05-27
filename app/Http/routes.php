@@ -37,6 +37,8 @@ Route::get('tag/{id}','TagController@show');
 
 //ranking list
 Route::get('ranks','FrontController@ranks');
+Route::get('rank/student','FrontController@studentrank');
+Route::get('rank/book','FrontController@bookrank');
 
 
 //后台   登记图书和学生信息，借书、还书的信息修改。
