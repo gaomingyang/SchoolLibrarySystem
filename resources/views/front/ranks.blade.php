@@ -50,12 +50,17 @@
     @endif
 
 
-	<!-- <div class="page-header">
+	<div class="page-header">
     	<h3>借书类别统计</h3>
     </div>
     <div class="row">
-    	饼图
-    </div> -->
+    	<!-- 饼图 -->
+    	@foreach($bookCategories as $c)
+    		<p>
+			{{$c['name']}}--{{$c['number']}}本--{{$c['percentage']}}
+			</p>
+    	@endforeach
+    </div>
 
 
     

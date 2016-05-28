@@ -100,7 +100,9 @@ class BorrowController extends Controller
 
     public function borrowed()
     {
-        $borroweds = Borrow::where('return_time',null)->orderBy('id', 'desc')->paginate(200);
+
+        // $borroweds = Borrow::where('return_time',null)->orderBy('id', 'desc')->paginate(200);
+        $borroweds = Borrow::whereNull('return_time')->orderBy('id', 'desc')->paginate(200);
         $number = $borroweds->count();
 
         // $today = date('Y-m-d');
