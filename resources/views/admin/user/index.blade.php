@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-<h2 class="sub-header">管理员列表</h2>
+<h2 class="sub-header">{{trans('user.list_title')}}</h2>
 <p>
-    <a href="/admin/user/create" class="btn btn-success">增加管理员</a>
+    <a href="/admin/user/create" class="btn btn-success">{{trans('common.create')}}</a>
 </p>
 <div class="row">
 	<div class="col-sm-1 pull-right">
-		<a href="/admin/user/trashed" class="label label-default ">已删除</a>
+		<a href="/admin/user/trashed" class="label label-default ">{{trans('common.deleted')}}</a>
 	</div>
 </div>
 
@@ -16,9 +16,9 @@
 		<thead>
 			<tr>
 				<th>id</th>
-				<th>姓名</th>
-				<th>email</th>
-                <th>操作</th>
+				<th>{{trans('user.name')}}</th>
+				<th>{{trans('user.email')}}</th>
+                <th>@lang('common.operation')</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,8 +29,8 @@
                 <td>{{$u->name}}</td>
 				<td>{{$u->email}}</td>
 				<td>
-					<a href="/admin/user/{{$u->id}}/edit" class="btn btn-xs btn-info">编辑</a>
-                    <a href="#">删除</a>
+					<a href="/admin/user/{{$u->id}}/edit" class="btn btn-xs btn-info">{{trans('common.edit')}}</a>
+                    <a href="#">{{trans('common.delete')}}</a>
 				</td>
 			</tr>
 			@endforeach

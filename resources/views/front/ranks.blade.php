@@ -50,6 +50,7 @@
     @endif
 
 
+	@if(isset($bookCategories))
 	<div class="page-header">
     	<h3>借书类别统计</h3>
     </div>
@@ -61,6 +62,7 @@
 			</p>
     	@endforeach
     </div>
+    @endif
 
 
     
