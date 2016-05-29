@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 
+use Validator,Redirect,Session;
 
 class UserController extends Controller
 {
@@ -27,9 +28,26 @@ class UserController extends Controller
     	return view('admin.user.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        
+        $validator = Validator::make($request->all(), [
+            'name' => 'user.name.required',
+            'email'=>'required|email',
+            'password'=>'required',
+            'password_confirmation'=>'required',
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
+
+        if (User::create($request)) {
+            Session::flash('success', '新增成功!');
+            return Redirect::to('admin/category');
+        }else{
+            Session::flash('success', '新增失败!');
+            return Redirect::back()->withInput();
+        }
     }
 
     public function edit($id)
