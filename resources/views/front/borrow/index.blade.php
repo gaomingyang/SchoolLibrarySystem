@@ -7,7 +7,15 @@
 		<div class="col-xs-12  col-sm-10 col-sm-offset-1 main">
 
             <h2 class="sub-header">{{$title}}</h2>
-            <p>数目：{{$number}}本</p>
+            <p>数目：{{$number}}本
+				<span class="pull-right">
+					@if($title == '今日已还图书')
+						<a href="/returned">全部已还图书</a>
+					@else
+						<a href="/returned/today">今日已还图书</a>
+					@endif
+				</span>
+			</p>
             <div class="table-responsive">
             <table class="table table-striped">
             <thead>

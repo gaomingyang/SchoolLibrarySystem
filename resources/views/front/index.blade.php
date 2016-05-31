@@ -33,6 +33,7 @@
                         <button type="button" class="list-group-item">杨夜超</button>
                         <button type="button" class="list-group-item">代央学</button>
                         <button type="button" class="list-group-item">贾采嫦</button>
+                        <button type="button" class="list-group-item">代雄科</button>
                         <button type="button" class="list-group-item">贾培高</button>
                     </div>
 
