@@ -12,6 +12,7 @@
 </div>
 
 <div class="table-responsive">
+    @include('common.flash')
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -30,7 +31,7 @@
 				<td>{{$u->email}}</td>
 				<td>
 					<a href="/admin/user/{{$u->id}}/edit" class="btn btn-xs btn-info">{{trans('common.edit')}}</a>
-                    <a href="#">{{trans('common.delete')}}</a>
+                    <a href="#d_{{$u->id}}" data-toggle="modal" class="btn btn-xs btn-danger" >{{trans('common.delete')}}</a>
 				</td>
 			</tr>
 			@endforeach
@@ -38,4 +39,9 @@
 	</table>
 </div>
 
+@include('admin.user.deletes')
+@endsection
+
+@section('js')
+<script src="{{ asset('js/dform.js') }}"></script>
 @endsection
