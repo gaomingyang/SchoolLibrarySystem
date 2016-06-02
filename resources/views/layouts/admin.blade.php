@@ -56,8 +56,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/admin/login') }}">Login</a></li>
-                        <li><a href="{{ url('/admin/register') }}">Register</a></li>
+                        <li><a href="{{ url('/admin/login') }}">{{ trans('common.login')}}</a></li>
+                        <li><a href="{{ url('/admin/register') }}">{{ trans('common.register')}}</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -65,8 +65,8 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="">修改密码</a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>退出</a></li>
+                                <li><a href="">{{ trans('common.changePassword')}}</a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('common.logout')}}</a></li>
                             </ul>
                         </li>
                     @endif

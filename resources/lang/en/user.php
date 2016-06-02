@@ -7,4 +7,3 @@ return [
 	'password'	=>'Password',
 	'confirm_password'	=> 'Confirm Password',
 ];
-

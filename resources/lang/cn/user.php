@@ -8,4 +8,3 @@ return [
 	'confirm_password'	=> '确认密码',
 
 ];
-
