@@ -18,22 +18,19 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{$grade->name}}</h3>
-
                 </div>
                 <div class="panel-body students">
 
 						<div class="pull-right" style="margin-left:5px;">
-	                        <form action="{{ url('admin/grade/'.$grade->id) }}" method="POST">
-	                            {!! csrf_field() !!}
-	                            {!! method_field('DELETE') !!}
-	                            <button type="submit" class="btn btn-danger">
-	                                <i class="fa fa-trash"></i> 删除
-	                            </button>
-	                        </form>
+							<a href="#d_{{$grade->id}}" class="btn btn-danger" data-toggle="modal" >{{trans('common.delete')}}</a>
 	                    </div>
-	                    <div class="pull-right">
-	                        <a href="{{url('admin/grade/'.$grade->id.'/edit')}}" class="btn btn-info">编辑</a>
+	                    <div class="pull-right" style="margin-left:5px;">
+	                        <a href="{{url('admin/grade/'.$grade->id.'/edit')}}" class="btn btn-info">{{trans('common.edit')}}</a>
 	                    </div>
+						<div class="pull-right">
+	                        <a href="{{url('admin/grade/'.$grade->id.'/seattable')}}" class="btn btn-success">座位表</a>
+	                    </div>
+
 					<div class=" clearfix"></div>
 
 
@@ -55,4 +52,9 @@
     </div>
 </div>
 
+@include('admin.grade.delete')
+@endsection
+
+@section('js')
+<script src="{{ asset('js/dform.js') }}"></script>
 @endsection
