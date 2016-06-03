@@ -28,7 +28,7 @@
 	                        <a href="{{url('admin/grade/'.$grade->id.'/edit')}}" class="btn btn-info">{{trans('common.edit')}}</a>
 	                    </div>
 						<div class="pull-right">
-	                        <a href="{{url('admin/grade/'.$grade->id.'/seattable')}}" class="btn btn-success">座位表</a>
+	                        <a href="{{url('admin/grade/'.$grade->id.'/seattable/create')}}" class="btn btn-success">新建座位表</a>
 	                    </div>
 
 					<div class=" clearfix"></div>

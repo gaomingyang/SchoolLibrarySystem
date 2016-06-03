@@ -61,8 +61,16 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
 	Route::get('borrowlog','Admin\BorrowController@borrowlog');
 
     Route::get('book/trashed','Admin\BookController@trashed');
+
 	Route::get('student/trashed','Admin\StudentController@trashed');
 	Route::get('student/{id}/restore','Admin\StudentController@restore');
+
+	Route::get('grade/{id}/seattable','Admin\GradeController@seattable');
+	Route::get('grade/{id}/seattable/create','Admin\GradeController@seattable_create');
+
+	//管理员 变更密码
+	Route::get('user/{id}/password','Admin\UserController@password');
+
 
     Route::resource('user','Admin\UserController');
     Route::resource('book','Admin\BookController');

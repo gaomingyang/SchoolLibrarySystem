@@ -84,4 +84,10 @@ class GradeController extends Controller
         return view('admin.grade.trashed',compact('grades'));
     }
 
+    public function seattable_create($id)
+    {
+        $grade = Grade::findOrFail($id);
+        return view('admin.grade.seattable.create',compact('grade'));
+    }
+
 }
