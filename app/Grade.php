@@ -17,4 +17,9 @@ class Grade extends Model
         return $this->hasMany('App\Student');
     }
 
+    public function squads()
+    {
+        return $this->hasMany('App\Squad');
+    }
+
 }
