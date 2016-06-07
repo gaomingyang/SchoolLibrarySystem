@@ -93,7 +93,8 @@
                <li><a href="/admin/borrowlog">借书记录</a></li>
            </ul>
            <ul class="nav nav-sidebar">
-               <li><a href="/admin/grade">班级管理</a></li>
+               <li><a href="/admin/grade">年级</a></li>
+               <li><a href="/admin/squad">班级</a></li>
                <li><a href="/admin/grade/rise">升年级</a></li>
                <li><a href="/admin/student">学生列表</a></li>
            </ul>

@@ -78,6 +78,7 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
 	Route::resource('category','Admin\CategoryController');
 	Route::resource('tag','Admin\TagController');
     Route::resource('grade','Admin\GradeController');
+    Route::resource('squad','Admin\SquadController');
     Route::resource('student','Admin\StudentController');
 
     Route::resource('system','Admin\SystemController',['only'=>['index','update']]);

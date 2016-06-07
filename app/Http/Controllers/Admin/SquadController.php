@@ -28,7 +28,8 @@ class SquadController extends Controller
      */
     public function create()
     {
-        //
+        $grades = Grade::all();
+        return view('admin.squad.create',compact('grades'));
     }
 
     /**
