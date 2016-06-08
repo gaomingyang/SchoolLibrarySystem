@@ -23,6 +23,13 @@
 		</div>
 	</div>
 
+    <div class="form-group">
+		<label for="" class="control-label col-xs-12 col-sm-2 col-md-2">开放借书班级</label>
+		<div class="col-xs-12 col-sm-1 col-md-1">
+			勾选允许借书的班级。
+		</div>
+	</div>
+
 	<div class="form-group">
 		<label for="" class="control-label col-xs-12 col-sm-2 col-md-2">每人最多可借</label>
 		<div class="col-xs-12 col-sm-1 col-md-1">
