@@ -20,11 +20,9 @@ h3{text-align: center;}
 @section('content')
 @include('common.flash')
 
-<h2 class="sub-header">年级/班级</h2>
+<h2 class="sub-header">年级管理</h2>
 <p>
     <a href="/admin/grade/create" class="btn btn-success">增加年级</a>
-    <a href="/admin/squad/create" class="btn btn-info">增加班级</a>
-    <a href="/admin/grade/rise" class="btn btn-warning">升年级</a>
 </p>
 <!-- <div class="row">
 	<div class="col-sm-1 pull-right">
@@ -34,15 +32,14 @@ h3{text-align: center;}
 
 
 @foreach($grades as $grade)
-{{$grade->name}}<br>
-
-@if($grade->squads)
-    @foreach($grade->squads as $squad)
-        <a href="/admin/squad/{{$squad->id}}">{{$squad->name}}</a>
-    @endforeach
-@endif
-
-<hr>
+  <div class="col-xs-6 col-md-3">
+      <!-- <a href="#" class="thumbnail">{{$grade->name}}</a> -->
+      <div class="thumbnail" link="/admin/grade/{{$grade->id}}">
+        <div class="caption">
+            <h3>{{$grade->name}}</h3>
+        </div>
+      </div>
+  </div>
 @endforeach
 
 @endsection

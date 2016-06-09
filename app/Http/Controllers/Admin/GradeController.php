@@ -21,7 +21,8 @@ class GradeController extends Controller
     {
         // $grades = DB::select('select * from grades order by convert(name using gb2312) asc');
         // $grades = DB::select("select * from grades order by convert(name,'gbk','utf8') asc");
-        $grades = Grade::orderBy('id', 'desc')->paginate(30);
+        //$grades = Grade::orderBy('id', 'desc')->paginate(30);
+        $grades = Grade::all();
         return view('admin.grade.index',compact('grades'));
     }
 

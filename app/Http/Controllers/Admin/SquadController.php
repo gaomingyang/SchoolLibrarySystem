@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Grade;
+use App\Squad;
 
 class SquadController extends Controller
 {
@@ -40,7 +41,14 @@ class SquadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $c=Squad::create($data);
+        if ($c) {
+            Session::flash('success', '新增班级成功!');
+            return Redirect::to('admin/grade');
+        } else {
+            return Redirect::back()->withInput()->withErrors('新增失败！');
+        }
     }
 
     /**
@@ -51,8 +59,10 @@ class SquadController extends Controller
      */
     public function show($id)
     {
-        //
+        $squad = Squad::findOrFail($id);
+        return view('admin.squad.profile',compact('squad'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
