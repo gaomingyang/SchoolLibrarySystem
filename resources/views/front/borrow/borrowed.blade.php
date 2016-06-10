@@ -25,7 +25,7 @@
 	              <tr>
 	                <td>{{$d->book_id}}</td>
 	                <td><a href="/book/{{$d->book_id}}">{{$d->book->name}}</a></td>
-	                <td>{{$d->student->grade->name}}</td>
+	                <td>{{$d->student->squad->name}}</td>
 	                <td><a href="/student/{{$d->student->id}}">{{$d->student->name}}</a></td>
 	                <td>{{$d->borrow_time}}</td>
 	                <td>{{$d->return_time}}</td>
@@ -57,7 +57,7 @@
 		            <tr>
 		              <td>{{$b->book_id}}</td>
 		              <td><a href="/book/{{$b->book_id}}">{{$b->book->name}}</a></td>
-		              <td>{{$b->student->grade->name}}</td>
+		              <td>{{$b->student->squad->name}}</td>
 		              <td><a href="/student/{{$b->student->id}}">{{$b->student->name}}</a></td>
 		              <td>{{$b->borrow_time}}</td>
 		              <td>{{$b->return_time}}</td>

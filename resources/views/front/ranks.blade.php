@@ -15,13 +15,13 @@
 		@endif
 		<!-- 横向柱状图 -->
 
-		
+
 		@foreach($students as $k=>$s)
 			<p>
 				<span class="badge">{{$k+1}}</span>
-				<a href="/student/{{$s->student_id}}">{{$s->student->name}}</a>({{$s->student->grade->name}})--{{$s->total}}本 </p>
+				<a href="/student/{{$s->student_id}}">{{$s->student->name}}</a>({{$s->student->squad->name}})--{{$s->total}}本 </p>
 		@endforeach
-		
+
 	</div>
 	@endif
 
@@ -40,7 +40,7 @@
 		@endif
     	<!-- 横向柱状图 -->
     	@foreach($books as $k=>$b)
-			<p> 
+			<p>
 				<span class="badge">{{$k+1}}</span>
 				<a href="/book/{{$b->book_id}}"><<{{$b->book->name}}>></a>({{$b->book->category->name}})--借过{{$b->total}}次
 			</p>
@@ -65,11 +65,11 @@
     @endif
 
 
-    
 
 
 
-	
+
+
 
 
 </div>

@@ -73,7 +73,7 @@
             <tr>
                 <td><a href="/student/{{$student->id}}">{{$student->name}}</a></td>
                 <td>{{$student->gendername()}}</td>
-                <td>{{$student->grade->name}}</td>
+                <td>{{$student->squad->name}}</td>
             </tr>
             @endforeach
         </tbody>

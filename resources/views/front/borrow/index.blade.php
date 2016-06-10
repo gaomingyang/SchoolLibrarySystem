@@ -36,7 +36,7 @@
                     {{$b->book_id}}
                 </td>
               <td><a href="/book/{{$b->book_id}}">{{$b->book->name}}</a></td>
-              <td>{{$b->student->grade->name}}</td>
+              <td>{{$b->student->squad->name}}</td>
               <td>{{$b->student->name}}</td>
               <td>{{$b->borrow_time}}</td>
               <td>{{$b->return_time}}</td>

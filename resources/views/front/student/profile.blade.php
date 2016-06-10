@@ -25,7 +25,7 @@
     <div class="row">
         <label class="col-xs-12 col-sm-1 ">班级</label>
         <div class="col-xs-12 col-sm-6">
-            <p class="">{{$student->grade->name}}</p>
+            <p class="">{{$student->squad->name}}</p>
         </div>
     </div>
 </div>
@@ -65,7 +65,7 @@
 还没有借过书。。。
 @endif
 </div>
-    
+
 </div>
 
 
