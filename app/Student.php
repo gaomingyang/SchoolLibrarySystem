@@ -24,9 +24,15 @@ class Student extends Model
         }
 
     }
+
+    // public function grade()
+    // {
+    //     return $this->belongsToThrough('App\Grade','App\Squad');
+    // }
+
     public function squad()
     {
-        return $this->BelongsTo('App\Squad');
+        return $this->belongsTo('App\Squad');
     }
 
     public function waitReturn()

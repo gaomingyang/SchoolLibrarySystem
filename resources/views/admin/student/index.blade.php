@@ -25,7 +25,7 @@
 			@foreach($students as $student)
 			<tr>
 				<td>
-					{{$student->grade->name}}
+					{{$student->squad->name}}
 				</td>
 				<td><a href="/admin/student/{{$student->id}}">{{$student->name}}</a></td>
 				<td>{{$student->gendername()}}</td>

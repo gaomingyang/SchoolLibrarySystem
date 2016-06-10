@@ -4,14 +4,14 @@
 	<div class="col-md-2">
 		<select name="grade_id" id="" class="form-control">
 			<option value="">班级</option>
-			@foreach($grades as $grade)
-			<option value="{{$grade->id}}"
+			@foreach($squads as $squad)
+			<option value="{{$squad->id}}"
 			@if(isset($student) )
-				@if($student->grade_id == $grade->id)
+				@if($student->squad_id == $squad->id)
 					selected
 				@endif
 			@endif
-				 >{{$grade->name}}</option>
+				 >{{$squad->name}}</option>
 			@endforeach
 		</select>
 	</div>

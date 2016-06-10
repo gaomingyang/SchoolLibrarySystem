@@ -19,7 +19,7 @@
 @foreach($borroweds as $b)
 <tr>
   <td><a href="/book/{{$b->book_id}}">{{$b->book->name}}</a></td>
-  <td><a href="#">{{$b->student->grade->name}}</a></td>
+  <td><a href="#">{{$b->student->squad->name}}</a></td>
   <td><a href="#">{{$b->student->name}}</a></td>
   <td>{{$b->borrow_time}}</td>
   <td>{{$b->return_time}}</td>

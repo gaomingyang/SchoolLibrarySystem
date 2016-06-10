@@ -3,16 +3,16 @@
 
 @section('css')
 <style type="text/css">
-.thumbnail{
-    height:95px;
-}
-.thumbnail:hover{
-    cursor:pointer;
-}
-h3{text-align: center;}
-.thumbnail:hover{
-    background-color: #eee;
-}
+    a {
+        text-decoration: none;
+    }
+    .page-header{
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    .gradeBlock{
+        /*border: 1px solid #ccc;*/
+    }
 </style>
 
 @endsection
@@ -23,7 +23,7 @@ h3{text-align: center;}
 <h2 class="sub-header">年级/班级</h2>
 <p>
     <a href="/admin/grade/create" class="btn btn-success">增加年级</a>
-    <a href="/admin/squad/create" class="btn btn-info">增加班级</a>
+    <a href="/admin/squad/create" class="btn btn-primary">增加班级</a>
     <a href="/admin/grade/rise" class="btn btn-warning">升年级</a>
 </p>
 <!-- <div class="row">
@@ -34,15 +34,21 @@ h3{text-align: center;}
 
 
 @foreach($grades as $grade)
-{{$grade->name}}<br>
+<div class="gradeBlock">
+    <div class="page-header">
+        <h3>{{$grade->name}}</h3>
+    </div>
 
-@if($grade->squads)
-    @foreach($grade->squads as $squad)
-        <a href="/admin/squad/{{$squad->id}}">{{$squad->name}}</a>
-    @endforeach
-@endif
+    @if($grade->squads)
+        <h1>
+        @foreach($grade->squads as $squad)
+        <a href="/admin/squad/{{$squad->id}}" ><span class="label label-info">{{$squad->name}}</span></a>
+        @endforeach
+        </h1>
+    @endif
+    <hr>
+</div>
 
-<hr>
 @endforeach
 
 @endsection

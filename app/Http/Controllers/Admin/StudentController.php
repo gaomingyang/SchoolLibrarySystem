@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Grade;
+use App\Squad;
 use App\Student;
 use Redirect,Session,Validator;
 
@@ -27,8 +28,8 @@ class StudentController extends Controller
 
     public function create()
     {
-        $grades = Grade::all();
-        return view('admin.student.create',compact('grades'));
+        $squads = Squad::all();
+        return view('admin.student.create',compact('squads'));
     }
 
     public function store(Request $request)
@@ -69,8 +70,8 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::findOrFail($id);
-        $grades = Grade::all();
-        return view('admin.student.edit',compact('student','grades'));
+        $squads = Squad::all();
+        return view('admin.student.edit',compact('student','squads'));
     }
 
     public function update(Request $request, $id)
@@ -114,7 +115,7 @@ class StudentController extends Controller
         }else{
             echo "fail";
         }
-        
+
     }
 
 
