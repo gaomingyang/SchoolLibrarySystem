@@ -87,8 +87,18 @@ class GradeController extends Controller
 
     public function rise()
     {
-        return view('admin.grade.rise.create');
+        $grades = Grade::orderBy('order','asc')->get();
+        return view('admin.grade.rise.create',compact('grades'));
     }
+
+	public function dorise(Request $request)
+	{
+		$students=$request->students;
+		$squad=$request->squad_id;
+
+
+	}
+
 
     public function seattable_create($id)
     {
