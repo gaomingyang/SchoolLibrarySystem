@@ -22,8 +22,8 @@ class StudentController extends Controller
 
     //根据班级列出学生
     //ajax json
-    public function stuByGrade($grade_id){
-        $students = Student::where('grade_id',$grade_id)->orderBy('name','asc')->get();
+    public function stuBySquad($squad_id){
+        $students = Student::where('squad_id',$squad_id)->orderBy('name','asc')->get();
         if (!empty($students)) {
             return $students;
         }else{
@@ -71,7 +71,7 @@ class StudentController extends Controller
         $result = array();
         $student = Student::findOrFail($id);
         $books = $student->borrow->where('return_time',null);
-     
+
         $result['user'] = $student;
         $booklist =array();
         foreach ($books as $key => $book) {

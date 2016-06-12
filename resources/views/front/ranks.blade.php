@@ -5,7 +5,7 @@
 
 	@if(isset($students))
 	<div class="page-header">
-    	<h3>借书次数排行榜</h3>
+    	<h3>借书排行榜</h3>
     </div>
 	<div class="row">
 		@if(count($students) == 10)

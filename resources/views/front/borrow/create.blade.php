@@ -73,16 +73,16 @@
 					<div class="col-xs-12 col-sm-10">
 						<div class="btn-toolbar " role="toolbar" aria-label="...">
 							<div class="btn-group" role="group" >
-								<a class="btn btn-default grade" grade="9">五甲</a>
-								<a class="btn btn-default grade" grade="10">五乙</a>
+								<a class="btn btn-default grade" squad="9">五甲</a>
+								<a class="btn btn-default grade" squad="10">五乙</a>
 							</div>
 							<div class="btn-group">
-								<a class="btn btn-default grade" grade="7">四甲</a>
-								<a class="btn btn-default grade" grade="8">四乙</a>
+								<a class="btn btn-default grade" squad="7">四甲</a>
+								<a class="btn btn-default grade" squad="8">四乙</a>
 							</div>
 							<div class="btn-group">
-								<a class="btn btn-default grade" grade="5">三甲</a>
-								<a class="btn btn-default grade" grade="6">三乙</a>
+								<a class="btn btn-default grade" squad="5">三甲</a>
+								<a class="btn btn-default grade" squad="6">三乙</a>
 							</div>
 							<!-- <div class="btn-group">
 								<a href="" class="btn btn-default">二甲</a>
@@ -185,10 +185,10 @@ $(function(){
 	$(".grade").click(function(){
 		$(".grade").removeClass('active');
 		$(this).addClass('active');
-		grade_n = $(this).attr('grade');
+		squad = $(this).attr('squad');
 
-		var url='{{URL('stuByGrade')}}';
-			$.get(url+'/'+grade_n,function(data){
+		var url='{{URL('stuBySquad')}}';
+			$.get(url+'/'+squad,function(data){
 				if (data == null) {
 					$(".students").html('<span class="alert alert-warning col-md-12">没有学生</span>');
 					return;
@@ -272,7 +272,7 @@ $(function(){
 		// 	modal.find('.modal-title').text(username+'的借书单');
 		// 	modal.find('.modal-body').html(books);
 
-		
+
 	});
 
 
@@ -446,7 +446,7 @@ function sel(id){
 		// data:{id:id},
 		success: function(allowNumber)
 		{
-			if (allowNumber <= 0) 
+			if (allowNumber <= 0)
 			{
 				$("#borrowSubmit").attr('disabled',true);
 				$("#message").html("<span style='color: red;'><i class='fa fa-times'></i>借书额度已用完，需先归还才可再借。</span>");
@@ -454,7 +454,7 @@ function sel(id){
 
 			if(allowNumber < <?php echo App\System::borrow_number_limit()?>)
 			{
-				
+
 				// $("#returnuid").attr('data-uid',id);
 				// $("#returnNotice").fadeIn();
 				$("#returnNotice").html('若已经还书，<a  id="returnuid" data-toggle="modal" data-target="#createReturnBook" data-uid="'+id+'" style="cursor:pointer">点击登记</a>');

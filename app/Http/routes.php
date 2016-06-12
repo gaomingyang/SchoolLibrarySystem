@@ -14,7 +14,7 @@ Route::get('/book/searchbykw/{keyword}','BookController@searchbykw');   //borrow
 Route::get('/book/borrowinfo/{kw}','BookController@borrowinfo');
 
 //student
-Route::get('stuByGrade/{grade_id}','StudentController@stuByGrade');
+Route::get('stuBySquad/{squad_id}','StudentController@stuBySquad');
 Route::get('student/{id}','StudentController@show');
 Route::get('student/{id}/returnbooks','StudentController@returnbooks');
 
