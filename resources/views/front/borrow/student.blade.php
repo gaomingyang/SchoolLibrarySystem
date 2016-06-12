@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">{{$student->grade->name}} <strong>{{$student->name}}</strong></div>
+                <div class="panel-heading">{{$student->squad->name}} <strong>{{$student->name}}</strong></div>
                 <table class="table ">
                 	@foreach($student->waitReturn() as $b)
                     <tr class="r{{$b->id}}">

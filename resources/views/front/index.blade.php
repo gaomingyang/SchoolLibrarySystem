@@ -28,6 +28,7 @@
                 <div class="panel-heading">电脑学习组成员</div>
                 <div class="panel-body">
                     <div class="list-group col-xs-10 col-sm-4 col-md-4">
+                        <button type="button" class="list-group-item">贾了铁</button>
                         <button type="button" class="list-group-item">杨水</button>
                         <button type="button" class="list-group-item">杨水仙</button>
                         <button type="button" class="list-group-item">杨夜超</button>

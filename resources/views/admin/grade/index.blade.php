@@ -36,8 +36,9 @@
 @foreach($grades as $grade)
 <div class="gradeBlock">
     <div class="page-header">
-        <h3>{{$grade->name}}</h3>
-    </div>
+        <h3 class>{{$grade->name}}</h3>
+   		<a href="/admin/grade/{{$grade->id}}/edit" class=" pull-right btn">编辑</a>
+	</div>
 
     @if($grade->squads)
         <h1>

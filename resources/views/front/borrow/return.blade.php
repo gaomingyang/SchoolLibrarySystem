@@ -53,16 +53,16 @@
 					<div class="col-sm-10">
 						<div class="btn-toolbar" role="toolbar" aria-label="...">
 							<div class="btn-group" role="group" >
-								<a class="btn btn-default grade" grade="9">五甲</a>
-								<a class="btn btn-default grade" grade="10">五乙</a>
+								<a class="btn btn-default squad" squad="9">五甲</a>
+								<a class="btn btn-default squad" squad="10">五乙</a>
 							</div>
 							<div class="btn-group">
-								<a class="btn btn-default grade" grade="7">四甲</a>
-								<a class="btn btn-default grade" grade="8">四乙</a>
+								<a class="btn btn-default squad" squad="7">四甲</a>
+								<a class="btn btn-default squad" squad="8">四乙</a>
 							</div>
 							<div class="btn-group">
-								<a class="btn btn-default grade" grade="5">三甲</a>
-								<a class="btn btn-default grade" grade="6">三乙</a>
+								<a class="btn btn-default squad" squad="5">三甲</a>
+								<a class="btn btn-default squad" squad="6">三乙</a>
 							</div>
 							<!-- <div class="btn-group">
 								<a href="" class="btn btn-default">二甲</a>
@@ -104,13 +104,13 @@ $(function(){
 
 
 	//when the address change, show users below.
-	$(".grade").click(function(){
-		$(".grade").removeClass('active');
+	$(".squad").click(function(){
+		$(".squad").removeClass('active');
 		$(this).addClass('active');
-		grade_n = $(this).attr('grade');
+		squad = $(this).attr('squad');
 
-		var url='{{URL('stuByGrade')}}';
-			$.get(url+'/'+grade_n,function(data){
+		var url='{{URL('stuBySquad')}}';
+			$.get(url+'/'+squad,function(data){
 				if (data == null) {
 					$(".students").html('<span class="alert alert-warning col-md-12">没有学生</span>');
 					return;
