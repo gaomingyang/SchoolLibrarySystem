@@ -79,7 +79,7 @@ class UserController extends Controller
         } catch (Exception $e) {
             return Redirect::back()->withErrors('删除失败');
         }
-        Session::flash('flash_message','删除成功');
+        Session::flash('successc','删除成功');
         return Redirect::to('admin/user');
     }
 

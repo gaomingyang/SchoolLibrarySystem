@@ -72,7 +72,7 @@ class TagController extends Controller
         $data = $request->all();
         $update=$tag->update($data);
         if ($update) {
-            Session::flash('flash_message', '更新成功！');
+            Session::flash('successc', '更新成功！');
             return Redirect::to('admin/tag');
         }else{
             return Redirect::back()->withInput()->withErrors('更新失败');
@@ -88,7 +88,7 @@ class TagController extends Controller
         } catch (Exception $e) {
             return Redirect::back()->with('error', '删除失败');
         }
-        Session::flash('flash_message', '删除成功！');
+        Session::flash('successc', '删除成功！');
         return Redirect::to('admin/tag');
     }
 

@@ -80,7 +80,7 @@ class StudentController extends Controller
         $data = $request->all();
         $update=$student->update($data);
         if ($update) {
-            Session::flash('flash_message', '更新成功！');
+            Session::flash('successc', '更新成功！');
             return Redirect::to('admin/student/'.$id);
         }else{
             return Redirect::back()->withInput()->withErrors('更新失败');
@@ -95,7 +95,7 @@ class StudentController extends Controller
         } catch (Exception $e) {
             return Redirect::back()->with('error', '删除失败');
         }
-        Session::flash('flash_message', '删除成功！');
+        Session::flash('successc', '删除成功！');
         return Redirect::to('admin/student');
     }
 
@@ -110,7 +110,7 @@ class StudentController extends Controller
     public function restore($id)
     {
         if (Student::onlyTrashed()->where('id',$id)->restore()) {
-            Session::flash('flash_message','恢复成功！');
+            Session::flash('successc','恢复成功！');
             return Redirect::to('admin/student/trashed');
         }else{
             echo "fail";

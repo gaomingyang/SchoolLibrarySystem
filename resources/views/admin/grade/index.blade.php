@@ -35,9 +35,14 @@
 
 @foreach($grades as $grade)
 <div class="gradeBlock">
-    <div class="page-header">
-        <h3 class>{{$grade->name}}</h3>
-   		<a href="/admin/grade/{{$grade->id}}/edit" class=" pull-right btn">编辑</a>
+    <div class="page-header col-sm-12">
+
+                <h3 >{{$grade->name}}</h3>
+
+            <a href="/admin/grade/{{$grade->id}}/edit" class="label label-warning">编辑</a>
+            <a href="" class="label label-danger">删除</a>
+    
+
 	</div>
 
     @if($grade->squads)
@@ -49,18 +54,10 @@
     @endif
     <hr>
 </div>
-
 @endforeach
 
 @endsection
 
 @section('js')
-<script type="text/javascript">
-    $(function(){
-        $(".thumbnail").click(function(){
-            var url = $(this).attr('link')
-            window.location.href=url;
-        });
-    });
-</script>
+
 @endsection

@@ -101,7 +101,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             return Redirect::back()->withInput()->withErrors('更新失败');
         }
-        Session::flash('flash_message', '更新成功！');
+        Session::flash('successc', '更新成功！');
         return Redirect::to('admin/category');
     }
 
@@ -119,7 +119,7 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             return Redirect::back()->withErrors('删除失败');
         }
-        Session::flash('flash_message','删除成功');
+        Session::flash('successc','删除成功');
         return Redirect::to('admin/category');
     }
 }
