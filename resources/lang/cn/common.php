@@ -14,4 +14,5 @@ return [
 	'delete'=>'删除',
 	'deleted'=>'已删除',
 	'submit'=>'确定',
+	'cancel'=>'取消',
 ];

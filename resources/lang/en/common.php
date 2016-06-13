@@ -14,4 +14,5 @@ return [
 	'delete'=>'Delete',
 	'deleted'=>'Deleted',
 	'submit'=>'Submit',
+	'cancel'=>'Cancel',
 ];

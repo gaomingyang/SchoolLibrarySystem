@@ -10,7 +10,7 @@
             </div>
             <div class="modal-footer">
                 <a class="btn btn-success" href="{!! URL::route('admin.grade.destroy', array('id' => $grade->id)) !!}" data-token="{{ csrf_token() }}" data-method="delete">{{trans('common.submit')}}</a>
-                <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                <button class="btn btn-danger" data-dismiss="modal">{{trans('common.cancel')}}</button>
             </div>
         </div>
     </div>

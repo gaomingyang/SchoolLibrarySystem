@@ -70,6 +70,12 @@ class GradeController extends Controller
     public function destroy($id)
     {
         $grade = Grade::findOrFail($id);
+
+        if(count($grade->squads) > 0){
+            Session::flash('error', '此年级内还有班级，无法删除年级!');
+            return Redirect::back();
+        }
+
         try {
             $grade->delete();
         } catch (Exception $e) {
