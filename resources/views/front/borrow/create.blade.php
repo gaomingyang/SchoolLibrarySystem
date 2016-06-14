@@ -188,29 +188,29 @@ $(function(){
 		squad = $(this).attr('squad');
 
 		var url='{{URL('stuBySquad')}}';
-			$.get(url+'/'+squad,function(data){
-				if (data == null) {
-					$(".students").html('<span class="alert alert-warning col-md-12">没有学生</span>');
-					return;
-				};
+		$.get(url+'/'+squad,function(data){
+			if (data == null) {
+				$(".students").html('<span class="alert alert-warning col-md-12">没有学生</span>');
+				return;
+			};
 
-				var one='';
-				$.each(data,function(k,v){
-					one+='<a href="javascript:sel('+v.id+')" class="student'+v.id+' btn ';
-					if (v.gender == 1) {
-						one+='btn-info';
-					}else if(v.gender == 2){
-						one+='btn-warning';
-					}else{
-						one+='btn-default';
-					}
+			var one='';
+			$.each(data,function(k,v){
+				one+='<a href="javascript:sel('+v.id+')" class="student'+v.id+' btn ';
+				if (v.gender == 1) {
+					one+='btn-info';
+				}else if(v.gender == 2){
+					one+='btn-warning';
+				}else{
+					one+='btn-default';
+				}
 
-					one+='">'+v.name+'</a>';
-					one+='&nbsp;&nbsp;';
-				});
+				one+='">'+v.name+'</a>';
+				one+='&nbsp;&nbsp;';
+			});
 
-				$(".students").html(one);
-			},'json');
+			$(".students").html(one);
+		},'json');
 	});
 
 	$(":radio[name='gender']").click(function(){
