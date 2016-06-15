@@ -100,7 +100,23 @@ class GradeController extends Controller
 	public function dorise(Request $request)
 	{
 		$students=$request->students;
-		$squad=$request->squad_id;
+		$oldsquad=$request->oldsquad;
+		$newsquad=$request->newsquad;
+        $graduate=$request->graduate;
+
+        // echo "students:";
+        // print_r($students);
+        // echo "<hr/>";
+        // echo "oldsquad:";
+        // print_r($oldsquad);
+        // echo "<hr/>";
+        // echo "newsquad:";  //若毕业，为空
+        // print_r($newsquad);
+        // echo "<hr/>";
+        // echo "graduate:"; //若未毕业，为空
+        // print_r($graduate);
+
+
 
 
 	}

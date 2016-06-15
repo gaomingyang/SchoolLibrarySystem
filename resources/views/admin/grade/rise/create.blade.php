@@ -22,7 +22,8 @@
 </div>
 
 
-<form class="form-horizontal" action="index.html" method="post">
+<form class="form-horizontal" action="{{URL('admin/grade/dorise')}}" method="post">
+    {{csrf_field()}}
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2 col-md-2">原班级</label>
         <!-- <div class="col-xs-6 col-sm-2 col-md-2">
@@ -34,7 +35,7 @@
     		</select>
     	</div> -->
         <div class="col-xs-6 col-sm-2 col-md-2">
-    		<select class="form-control squad" name="squad">
+    		<select class="form-control oldsquad" name="oldsquad">
                 <option value="0">班级</option>
                 @foreach($grades as $grade)
                     @foreach($grade->squads as $squad)
@@ -89,8 +90,8 @@
 
 $(function(){
     // alert('ready');
-    $(".squad").change(function(){
-        var squad_id = $(".squad option:selected").val();
+    $(".oldsquad").change(function(){
+        var squad_id = $(".oldsquad option:selected").val();
         var url = '{{URL('stuBySquad')}}';
         $.get(url+'/'+squad_id,function(data){
 			if (data == null) {
@@ -100,7 +101,7 @@ $(function(){
 
 			var one='';
 			$.each(data,function(k,v){
-				one+='<button type="button" class=" stu student'+v.id+' btn ';
+				one+='<a type="button" class=" stu student'+v.id+' btn ';
 				if (v.gender == 1) {
 					one+='btn-info';
 				}else if(v.gender == 2){
@@ -109,7 +110,7 @@ $(function(){
 					one+='btn-default';
 				}
 
-				one+='" ><label>'+v.name+'<input type="checkbox" aria-hidden="true"></label></button>';
+				one+='" ><label>'+v.name+'<input type="checkbox" name="students[]" aria-hidden="true" value="'+v.id+'"></label></a>';
 				one+='';
 			});
 
@@ -120,8 +121,14 @@ $(function(){
 
     });
 
-	$(".graduate").checked(function(){
-        
+	$(".graduate").click(function(){
+        if($(".graduate:checked").length > 0){
+            $(".newsquad > option").removeAttr('selected');
+            $(".newsquad > option").first().attr("selected","selected");
+            $(".newsquad").attr("disabled",true);
+        }else{
+            $(".newsquad").attr("disabled",false);
+        }
     });
 
 });
