@@ -65,7 +65,12 @@
     		</select>
     	</div>
         <div class="col-xs-4 col-sm-2 col-md-2">
-            <input type="checkbox" name="name" value="">毕业(离校)
+            <div class="checkbox">
+                <label>
+            		<input type="checkbox" name="graduate" value="1" class="graduate"  >毕业(离校)
+                </label>
+
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -115,7 +120,9 @@ $(function(){
 
     });
 
-
+	$(".graduate").checked(function(){
+        
+    });
 
 });
 </script>

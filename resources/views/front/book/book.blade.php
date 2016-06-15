@@ -55,7 +55,7 @@
 
                         @foreach($book->borrowed as $b)
                         <tr>
-                            <td>{{$b->student->grade->name}}</td>
+                            <td>{{$b->student->squad->name}}</td>
                             <td>{{$b->student->name}}</td>
                             <td>{{$b->borrow_time}}</td>
                             <td>{{$b->return_time}}</td>

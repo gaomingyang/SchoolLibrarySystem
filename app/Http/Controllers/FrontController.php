@@ -48,7 +48,7 @@ class FrontController extends Controller
     //ranking list
     public function ranks()
     {
-        //students 
+        //students
         // $studentRank = Borrow::all()->groupBy('student_id')->orderBy('')->get();
         $students = DB::table('borrow')->select('student_id',DB::raw('count(*) as total'))->groupBy('student_id')->orderBy('total','desc')->limit(10)->get();
         foreach ($students as $key => $s) {
@@ -58,7 +58,7 @@ class FrontController extends Controller
 
 
         //books && booksort
-        
+
         $books = DB::table('borrow')->select('book_id',DB::raw('count(*) as total'))->groupBy('book_id')->orderBy('total','desc')->limit(20)->get();
         foreach ($books as $key => $b) {
             $b->book = Book::findOrFail($b->book_id);
@@ -70,11 +70,11 @@ class FrontController extends Controller
         $bookCategories = array();
         $keys = array();
         $sum = 0;
-       
+
         foreach ($booklists as $key => $b) {
             $bookinfo = Book::findOrFail($b->book_id);
             $category_id =$bookinfo->category_id;
-            
+
             if (!in_array($category_id, $keys)) {
                 $keys[]=$category_id;
                 // $bookCategories[] = array('category_id'=>$category_id,'count'=>1);
@@ -86,13 +86,17 @@ class FrontController extends Controller
             $sum +=1;
 
         }
-       
+
        //加上百分比
        foreach ($bookCategories as $key => $c) {
             $bfb=round($c['number']/$sum,2)*100;
             $bookCategories[$key]['percentage'] = $bfb.'%';
         }
-
+        // $bookCategories = usort($bookCategories);
+        // echo "<pre>";
+        // print_r($bookCategories);
+        // echo "</pre>";
+        // exit;
         return view('front.ranks',compact('students','books','bookCategories'));
     }
 

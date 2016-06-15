@@ -94,7 +94,6 @@ class GradeController extends Controller
     public function rise()
     {
         $grades = Grade::orderBy('order','asc')->get();
-        
         return view('admin.grade.rise.create',compact('grades'));
     }
 
