@@ -100,9 +100,23 @@ class GradeController extends Controller
 	public function dorise(Request $request)
 	{
 		$students=$request->students;
-		$oldsquad=$request->oldsquad;
+		// $oldsquad=$request->oldsquad;
 		$newsquad=$request->newsquad;
         $graduate=$request->graduate;
+
+
+        //加上事务
+
+        if ($request->newsquad) {
+            $do = Student::find($request->students)->update(['squad_id'=>$request->newsquad]);
+        }elseif($request->graduate){
+            $time = Carbon::now();
+            $do = Student::find($request->students)->update(['graduated'=>1,'graduated_at'=>$time]);
+        }else{
+            Session::flash('error','出错了！');
+            return Redirect::back();
+        }
+
 
         // echo "students:";
         // print_r($students);

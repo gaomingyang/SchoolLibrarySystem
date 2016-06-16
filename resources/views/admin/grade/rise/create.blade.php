@@ -35,7 +35,7 @@
     		</select>
     	</div> -->
         <div class="col-xs-6 col-sm-2 col-md-2">
-    		<select class="form-control oldsquad" name="oldsquad">
+    		<select class="form-control oldsquad" >
                 <option value="0">班级</option>
                 @foreach($grades as $grade)
                     @foreach($grade->squads as $squad)
