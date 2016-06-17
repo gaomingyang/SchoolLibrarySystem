@@ -16,10 +16,10 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('name',10);
             $table->integer('grade_id',false,true)->length(2);
-            //$table->tinyInteger('gender',false,true)->default(1)->comment('1男2女'); 
+            //$table->tinyInteger('gender',false,true)->default(1)->comment('1男2女');
             $table->tinyInteger('gender',false,true)->comment('1男2女'); 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -27,6 +27,14 @@ class AddOrderToGradeAndSquad extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('grades',function($table){
+            $table->dropColumn('order');
+        });
+
+        Schema::table('squads',function($table){
+            $table->dropColumn('order');
+        });
+
+
     }
 }
