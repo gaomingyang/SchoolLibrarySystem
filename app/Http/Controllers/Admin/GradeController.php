@@ -8,7 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Grade;
-use Redirect,Session,Validator,DB,Carbon;
+use App\Student;
+use Carbon\Carbon;
+use Redirect,Session,Validator,DB;
 
 class GradeController extends Controller
 {
@@ -104,6 +106,16 @@ class GradeController extends Controller
 		$newsquad=$request->newsquad;
         $graduate=$request->graduate;
 
+        // print_r($students);
+        // exit;
+
+
+
+
+        // $do = Student::find([1, 2, 3])->update(['graduated'=>1]);
+        // echo "update ok";
+        // exit;
+
 
         //加上事务
 
@@ -111,7 +123,9 @@ class GradeController extends Controller
             $do = Student::find($request->students)->update(['squad_id'=>$request->newsquad]);
         }elseif($request->graduate){
             $time = Carbon::now();
-            $do = Student::find($request->students)->update(['graduated'=>1,'graduated_at'=>$time]);
+            // $do = Student::find(66)->update(['graduated'=>1,'graduated_at'=>$time]);
+
+
         }else{
             Session::flash('error','出错了！');
             return Redirect::back();

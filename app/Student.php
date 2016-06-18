@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\StudentScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Borrow;
@@ -12,6 +13,14 @@ class Student extends Model
     protected $table="students";
     protected $fillable=['id','grade_id','name','gender'];
     public $timestamps=false;
+
+    protected static function boot()
+    {
+       parent::boot();
+       static::addGlobalScope(new StudentScope);
+    }
+
+
 
     public function gendername()
     {
