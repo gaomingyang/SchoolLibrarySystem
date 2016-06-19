@@ -18,7 +18,7 @@
 
 @section('content')
 <div class="page-header">
-    <h3>学生升年级<small>新学期，学生从低年级升入高年级</small></h3>
+    <h3>升年级<small>新学期，学生从低年级升入高年级</small></h3>
 </div>
 
 
@@ -50,6 +50,11 @@
         <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="students well">
 
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="selectAllStudents" >全选
+                </label>
             </div>
         </div>
     </div>
@@ -101,7 +106,7 @@ $(function(){
 
 			var one='';
 			$.each(data,function(k,v){
-				one+='<a type="button" class=" stu student'+v.id+' btn ';
+				one+='<button type="button" class=" stu student'+v.id+' btn ';
 				if (v.gender == 1) {
 					one+='btn-info';
 				}else if(v.gender == 2){
@@ -110,7 +115,7 @@ $(function(){
 					one+='btn-default';
 				}
 
-				one+='" ><label>'+v.name+'<input type="checkbox" name="students[]" aria-hidden="true" value="'+v.id+'"></label></a>';
+				one+='" ><label>'+v.name+'<input type="checkbox" name="students[]" aria-hidden="true" value="'+v.id+'"></label></button>';
 				one+='';
 			});
 
@@ -120,6 +125,17 @@ $(function(){
 		},'json');
 
     });
+
+    $(".selectAllStudents").click(function(){
+        var $this = $(this);
+        if($this.is(':checked')){
+            $("a.stu > input:checkbox").addAttr("checked");
+        } else {
+
+        }
+    });
+
+
 
 	$(".graduate").click(function(){
         if($(".graduate:checked").length > 0){
