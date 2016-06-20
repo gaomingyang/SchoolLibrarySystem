@@ -106,7 +106,7 @@ $(function(){
 
 			var one='';
 			$.each(data,function(k,v){
-				one+='<button type="button" class=" stu student'+v.id+' btn ';
+				one+='<button type="button" class="stu student'+v.id+' btn ';
 				if (v.gender == 1) {
 					one+='btn-info';
 				}else if(v.gender == 2){
@@ -115,7 +115,7 @@ $(function(){
 					one+='btn-default';
 				}
 
-				one+='" ><label>'+v.name+'<input type="checkbox" name="students[]" aria-hidden="true" value="'+v.id+'"></label></button>';
+				one+='" ><label>'+v.name+'<input type="checkbox" class="stuid" name="students[]" aria-hidden="true" value="'+v.id+'"></label></button>';
 				one+='';
 			});
 
@@ -127,15 +127,8 @@ $(function(){
     });
 
     $(".selectAllStudents").click(function(){
-        var $this = $(this);
-        if($this.is(':checked')){
-            $("a.stu > input:checkbox").addAttr("checked");
-        } else {
-
-        }
+        $(".stuid").prop("checked",this.checked);
     });
-
-
 
 	$(".graduate").click(function(){
         if($(".graduate:checked").length > 0){
