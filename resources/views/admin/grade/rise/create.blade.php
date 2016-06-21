@@ -2,8 +2,9 @@
 
 @section('css')
 <style type="text/css">
-    .well{
+    .selAll,.well{
         display: none;
+
     }
     .stu{
         width: 74px;
@@ -17,6 +18,7 @@
 
 
 @section('content')
+@include('common.flash')
 <div class="page-header">
     <h3>升年级<small>新学期，学生从低年级升入高年级</small></h3>
 </div>
@@ -47,15 +49,16 @@
     </div>
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2 col-md-2">选择学生</label>
-        <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="col-xs-12 col-sm-8 col-md-8">
             <div class="students well">
 
             </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" class="selectAllStudents" >全选
-                </label>
-            </div>
+
+        </div>
+        <div class="checkbox selAll col-xs-12 col-sm-2 col-md-2">
+            <label>
+                <input type="checkbox" class="selectAllStudents" >全选
+            </label>
         </div>
     </div>
     <div class="form-group">
@@ -106,7 +109,7 @@ $(function(){
 
 			var one='';
 			$.each(data,function(k,v){
-				one+='<button type="button" class="stu student'+v.id+' btn ';
+				one+='<button type="button" class="stu btn ';
 				if (v.gender == 1) {
 					one+='btn-info';
 				}else if(v.gender == 2){
@@ -120,7 +123,7 @@ $(function(){
 			});
 
 			$(".students").html(one);
-            $(".well").fadeIn();
+            $(".well,.selAll").fadeIn();
 
 		},'json');
 

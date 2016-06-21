@@ -16,10 +16,10 @@ Route::get('/book/borrowinfo/{kw}','BookController@borrowinfo');
 //student
 Route::get('stuBySquad/{squad_id}','StudentController@stuBySquad');
 Route::get('student/{id}','StudentController@show');
-Route::get('student/{id}/returnbooks','StudentController@returnbooks');
+Route::get('student/{id}/returnbooks','StudentController@returnbooks');		//根据学生还书
 
-Route::post('student/ajaxupdategender','StudentController@ajaxUpdateGender');
-Route::get('student/checkallow/{id}','StudentController@checkallow');
+Route::post('student/ajaxupdategender','StudentController@ajaxUpdateGender');	//借书界面对未设置性别的学生进行设置
+Route::get('student/checkallow/{id}','StudentController@checkallow');	//借书监测是否还可借。目前只限制本数
 
 
 //borrow
@@ -63,6 +63,8 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
     Route::get('book/trashed','Admin\BookController@trashed');
 
 	Route::get('student/trashed','Admin\StudentController@trashed');
+	Route::get('student/graduated','Admin\StudentController@graduated');	//已毕业学生
+	Route::post('student/{id}/graduatedrollback','Admin\StudentController@graduatedrollback');	//已毕业学生
 	Route::get('student/{id}/restore','Admin\StudentController@restore');
 
 	Route::get('grade/rise','Admin\GradeController@rise');

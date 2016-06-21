@@ -26,7 +26,12 @@
     <div class="form-group">
 		<label for="" class="control-label col-xs-12 col-sm-2 col-md-2">开放借书班级</label>
 		<div class="col-xs-12 col-sm-1 col-md-1">
-			勾选允许借书的班级。
+			@foreach($squads as $squad)
+                <label >
+                    <input type="checkbox" name="name" value="{{$squad->id}}">{{$squad->name}}
+                </label>
+
+            @endforeach
 		</div>
 	</div>
 

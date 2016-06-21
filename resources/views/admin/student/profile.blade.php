@@ -29,6 +29,18 @@
             <p class="">{{$student->gendername()}}</p>
         </div>
     </div>
+    <div class="row">
+        <label class="col-xs-12 col-sm-1 ">状态</label>
+        <div class="col-xs-12 col-sm-6">
+            <p class="">
+                @if($student->graduated)
+                已毕业。毕业记录时间{{$student->graduated_at}}
+                @else
+                在校
+                @endif
+            </p>
+        </div>
+    </div>
 </div>
 
 

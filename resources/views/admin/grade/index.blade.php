@@ -24,13 +24,14 @@
 <p>
     <a href="/admin/grade/create" class="btn btn-success">增加年级</a>
     <a href="/admin/squad/create" class="btn btn-primary">增加班级</a>
-    <a href="/admin/grade/rise" class="btn btn-warning">升年级</a>
+    <a href="/admin/grade/rise" class="btn btn-warning">毕业/升年级</a>
 </p>
-<!-- <div class="row">
+<div class="row">
 	<div class="col-sm-1 pull-right">
+		<a href="/admin/student/graduated" class="label label-default ">已毕业学生</a>
 		<a href="/admin/grade/trashed" class="label label-default ">已删除</a>
 	</div>
-</div> -->
+</div>
 
 
 @foreach($grades as $grade)
@@ -41,7 +42,7 @@
 
             <a href="/admin/grade/{{$grade->id}}/edit" class="label label-warning">编辑</a>
             <a href="" class="label label-danger">删除</a>
-    
+
 
 	</div>
 

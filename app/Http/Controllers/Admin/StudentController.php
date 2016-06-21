@@ -64,19 +64,19 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        $student = Student::findOrFail($id);
-        return view('admin.student.profile',['student'=>Student::findOrFail($id)]);
+        $student = Student::withoutGlobalScopes()->findOrFail($id);
+        return view('admin.student.profile',['student'=>$student]);
     }
     public function edit($id)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::withoutGlobalScopes()->findOrFail($id);
         $squads = Squad::all();
         return view('admin.student.edit',compact('student','squads'));
     }
 
     public function update(Request $request, $id)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::withoutGlobalScopes()->findOrFail($id);
         $data = $request->all();
         $update=$student->update($data);
         if ($update) {
@@ -89,7 +89,7 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::withoutGlobalScopes()->findOrFail($id);
         try {
             $student->delete();
         } catch (Exception $e) {
@@ -102,7 +102,7 @@ class StudentController extends Controller
     //回收站
     public function trashed()
     {
-        $students = Student::onlyTrashed()->get();
+        $students = Student::withoutGlobalScopes()->onlyTrashed()->get();
         $number = count($students);
         return view('admin.student.trashed',compact('students','number'));
     }
@@ -115,6 +115,15 @@ class StudentController extends Controller
         }else{
             echo "fail";
         }
+    }
+
+    public function graduated()
+    {
+
+
+        $students = Student::withoutGlobalScopes()->where('graduated',1)->orderBy('graduated_at','desc')->paginate(100);
+        $number = Student::withoutGlobalScopes()->where('graduated',1)->count();
+        return view('admin.student.graduated',['students'=>$students,'number'=>$number]);
 
     }
 

@@ -27,9 +27,9 @@
 	                    <div class="pull-right" style="margin-left:5px;">
 	                        <a href="{{url('admin/squad/'.$squad->id.'/edit')}}" class="btn btn-info">{{trans('common.edit')}}</a>
 	                    </div>
-						<div class="pull-right">
+						<!-- <div class="pull-right">
 	                        <a href="{{url('admin/squad/'.$squad->id.'/seattable/create')}}" class="btn btn-success">新建座位表</a>
-	                    </div>
+	                    </div> -->
 
 					<div class=" clearfix"></div>
 
