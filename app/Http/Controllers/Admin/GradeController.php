@@ -93,46 +93,7 @@ class GradeController extends Controller
         return view('admin.grade.trashed',compact('grades'));
     }
 
-    public function rise()
-    {
-        $grades = Grade::orderBy('order','asc')->get();
-        return view('admin.grade.rise.create',compact('grades'));
-    }
-
-	public function dorise(Request $request)
-	{
-		$students=$request->students;
-		$newsquad=$request->newsquad;
-        $graduate=$request->graduate;
-
-        if ($request->newsquad) {
-            $do = Student::whereIn('id',$students)->update(['squad_id'=>$request->newsquad]);
-            if($do >0 && $do == count($students)){
-                Session::flash('successc','操作完成');
-                return Redirect::back();
-            }else{
-                Session::flash("error","操作失败");
-                return Redirect::back();
-            }
-        }elseif($request->graduate){
-            $time = Carbon::now();
-            //DB::table('countries')->whereIn('id', [1, 2])->update(['code' => 'AD']);
-            $updateArr = ['graduated'=>1,'graduated_at'=>$time];
-            // $do = DB::table('students')->whereIn('id', $students)->update($updateArr);
-            $do = Student::whereIn('id', $students)->update($updateArr);
-            if($do >0 && $do == count($students)){
-                Session::flash('successc','操作完成');
-                return Redirect::back();
-            }else{
-                Session::flash("error","操作失败");
-                return Redirect::back();
-            }
-        }else{
-            Session::flash('error','出错了！');
-            return Redirect::back();
-        }
-	}
-
+    
     public function seattable_create($id)
     {
         $grade = Grade::findOrFail($id);

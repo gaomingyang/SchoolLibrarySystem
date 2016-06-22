@@ -3,7 +3,20 @@
 @section('content')
 @include('common.flash')
 <h2 class="sub-header">已毕业学生</h2>
-<p>共{{$number}}人</p>
+<div class="row">
+	<div class="col-md-4">
+		<div class="input-group">
+			<input type="text" class="form-control" name="name" value="" placeholder="学生名">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default" name="button">搜索</button>
+			</span>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<p class="form-control-static">共{{$number}}人</p>
+	</div>
+</div>
+
 <div class="table-responsive">
 	<table class="table table-striped">
 		<thead>
@@ -31,4 +44,5 @@
 	</table>
 	{!! $students->render() !!}
 </div>
+@include('student.ungraduate');
 @endsection

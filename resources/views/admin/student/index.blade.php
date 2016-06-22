@@ -8,6 +8,7 @@
 </p>
 <div class="row">
 	<div class="col-sm-1 pull-right">
+        <a href="/admin/student/graduated" class="label label-info ">已毕业学生</a>
 		<a href="/admin/student/trashed" class="label label-default ">已删除</a>
 	</div>
 </div>

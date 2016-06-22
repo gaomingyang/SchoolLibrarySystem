@@ -67,8 +67,8 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
 	Route::post('student/{id}/graduatedrollback','Admin\StudentController@graduatedrollback');	//已毕业学生
 	Route::get('student/{id}/restore','Admin\StudentController@restore');
 
-	Route::get('grade/rise','Admin\GradeController@rise');
-	Route::post('grade/dorise','Admin\GradeController@dorise');
+	Route::get('student/rise','Admin\StudentController@rise');
+	Route::post('student/dorise','Admin\StudentController@dorise');
 	Route::get('grade/{id}/seattable','Admin\GradeController@seattable');
 	Route::get('grade/{id}/seattable/create','Admin\GradeController@seattable_create');
 

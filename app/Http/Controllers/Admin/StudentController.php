@@ -117,13 +117,70 @@ class StudentController extends Controller
         }
     }
 
+    public function rise()
+    {
+        $grades = Grade::orderBy('order','asc')->get();
+        return view('admin.student.rise.create',compact('grades'));
+    }
+
+    public function dorise(Request $request)
+    {
+        $students=$request->students;
+        $newsquad=$request->newsquad;
+        $graduate=$request->graduate;
+
+        if ($request->newsquad) {
+            $do = Student::whereIn('id',$students)->update(['squad_id'=>$request->newsquad]);
+            if($do >0 && $do == count($students)){
+                Session::flash('successc','操作完成');
+                return Redirect::back();
+            }else{
+                Session::flash("error","操作失败");
+                return Redirect::back();
+            }
+        }elseif($request->graduate){
+            $time = Carbon::now();
+            //DB::table('countries')->whereIn('id', [1, 2])->update(['code' => 'AD']);
+            $updateArr = ['graduated'=>1,'graduated_at'=>$time];
+            // $do = DB::table('students')->whereIn('id', $students)->update($updateArr);
+            $do = Student::whereIn('id', $students)->update($updateArr);
+            if($do >0 && $do == count($students)){
+                Session::flash('successc','操作完成');
+                return Redirect::back();
+            }else{
+                Session::flash("error","操作失败");
+                return Redirect::back();
+            }
+        }else{
+            Session::flash('error','出错了！');
+            return Redirect::back();
+        }
+
+    }
+
     public function graduated()
     {
-
-
-        $students = Student::withoutGlobalScopes()->where('graduated',1)->orderBy('graduated_at','desc')->paginate(100);
+        $students = Student::withoutGlobalScopes()->where('graduated',1)->orderBy('graduated_at','desc')->paginate(50);
         $number = Student::withoutGlobalScopes()->where('graduated',1)->count();
         return view('admin.student.graduated',['students'=>$students,'number'=>$number]);
+    }
+
+    public function ungraduated($id)
+    {
+        $student= Student::withoutGlobalScopes()->findOrFail($id);
+        if (!$student) {
+            Session::flash('error','找不到此学生！');
+            return ;
+        }
+
+		$student->update(['graduated'=>0,'graduated_at'=>null]);
+
+        if (Student::onlyTrashed()->where('id',$id)->restore()) {
+            Session::flash('successc','恢复成功！');
+            return Redirect::to('admin/student/trashed');
+        }else{
+            echo "fail";
+        }
 
     }
 
