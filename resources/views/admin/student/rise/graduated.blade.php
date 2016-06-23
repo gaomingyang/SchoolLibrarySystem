@@ -44,5 +44,5 @@
 	</table>
 	{!! $students->render() !!}
 </div>
-@include('student.ungraduate');
+@include('student.rise.unrise');
 @endsection

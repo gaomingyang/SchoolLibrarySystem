@@ -69,8 +69,10 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
 
 	Route::get('student/rise','Admin\StudentController@rise');
 	Route::post('student/dorise','Admin\StudentController@dorise');
-	Route::get('grade/{id}/seattable','Admin\GradeController@seattable');
-	Route::get('grade/{id}/seattable/create','Admin\GradeController@seattable_create');
+	Route::post('student/{id}/unrise','Admin\StudentController@unrise');
+
+	// Route::get('grade/{id}/seattable','Admin\GradeController@seattable');
+	// Route::get('grade/{id}/seattable/create','Admin\GradeController@seattable_create');
 
 	//管理员 变更密码
 	Route::get('user/{id}/password','Admin\UserController@password');
