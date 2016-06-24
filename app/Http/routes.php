@@ -1,6 +1,7 @@
 <?php
 //front
-Route::get('/','FrontController@index');
+// Route::get('/','FrontController@index');
+Route::get('/','BookController@index');
 Route::post('/search','FrontController@search');
 
 //book
@@ -64,7 +65,7 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
 
 	Route::get('student/trashed','Admin\StudentController@trashed');
 	Route::get('student/graduated','Admin\StudentController@graduated');	//已毕业学生
-	Route::post('student/{id}/graduatedrollback','Admin\StudentController@graduatedrollback');	//已毕业学生
+	Route::post('student/{id}/grollback',['as'=>'admin.student.grollback','uses'=>'Admin\StudentController@graduatedrollback']);	//已毕业学生
 	Route::get('student/{id}/restore','Admin\StudentController@restore');
 
 	Route::get('student/rise','Admin\StudentController@rise');

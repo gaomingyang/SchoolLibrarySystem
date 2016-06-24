@@ -162,7 +162,7 @@ class StudentController extends Controller
     {
         $students = Student::withoutGlobalScopes()->where('graduated',1)->orderBy('graduated_at','desc')->paginate(50);
         $number = Student::withoutGlobalScopes()->where('graduated',1)->count();
-        return view('admin.student.graduated',['students'=>$students,'number'=>$number]);
+        return view('admin.student.rise.graduated',['students'=>$students,'number'=>$number]);
     }
 
     public function ungraduated($id)

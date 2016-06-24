@@ -36,7 +36,7 @@
 				<td>{{$student->squad->name}}</td>
                 <td>{{$student->graduated_at}}</td>
                 <td>
-                    <a href="#" title="取消毕业状态，恢复到所在的班级">恢复</a>
+                    <a href="#gr_{{$student->id}}" class="btn btn-xs btn-success" data-toggle="modal" title="取消毕业状态，恢复到所在的班级">恢复</a>
                 </td>
 			</tr>
 			@endforeach
@@ -44,5 +44,13 @@
 	</table>
 	{!! $students->render() !!}
 </div>
-@include('student.rise.unrise');
+@include('admin.student.rise.unrise');
+@endsection
+
+
+@section('js')
+<script type="text/javascript">
+	$('#myModal').modal();
+</script>
+
 @endsection
