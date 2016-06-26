@@ -18,10 +18,13 @@
 <div class="row">
 	<div class="col-md-4">
 		<div class="input-group">
-			<input type="text" class="form-control" name="name" value="" placeholder="学生名">
-			<span class="input-group-btn">
-				<button type="button" class="btn btn-default" name="button">搜索</button>
-			</span>
+			<form  action="{{URL('/admin/student/graduated/search')}}" method="post">
+				{{csrf_field()}}
+				<input type="text" class="form-control" name="name" value="{{isset($keyword) ? $keyword : ''}}" placeholder="学生名">
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-default" name="button">搜索</button>
+				</span>
+			</form>
 		</div>
 	</div>
 	<div class="col-md-2">
@@ -56,9 +59,7 @@
 	</table>
 	{!! $students->render() !!}
 </div>
-<!--
-@include('admin.student.rise.unrise');
--->
+
 
 <div id="gr_student" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -71,7 +72,7 @@
                 <p>确定要把学生<span id="model_stuname"></span>恢复为未毕业状态？</p>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-success" id="model_submit" href="" data-token="{{ csrf_token() }}" data-method="put">{{trans('common.submit')}}</a>
+                <a class="btn btn-success" id="model_submit" href="javascript:void(0);" data-token="{{ csrf_token() }}" >{{trans('common.submit')}}</a>
                 <button class="btn btn-danger" data-dismiss="modal">{{trans('common.cancel')}}</button>
             </div>
         </div>
@@ -87,30 +88,29 @@
 		var button = $(event.relatedTarget);
 		var stuname = button.data('stuname');
 		var stuid = button.data('stuid');
-		var url = "{{URL::route('admin.student.grollback',array('id'=>""))}}";
-		
+		var url = "/admin/student/"+stuid+"/grollback";
+
 
 		var modal = $(this);
 		modal.find('#model_stuname').text(stuname);
 
-		modal.find('#model_submit').attr("href","{{ URL::route('admin.student.grollback', array('id' =>"stuid")) }}");
+		// modal.find('#model_submit').attr("href","{{ URL::route('admin.student.grollback', array('id' =>"stuid")) }}");
+		// modal.find('#model_submit').attr("href",url);
 
+
+		$("#gr_student").append(function () {
+			var dform = "\n"
+			dform += "<form id='grollbackform' action='" + url + "' method='POST' style='display:none'>\n"
+			dform += " <input type='hidden' name='_method' value='put'>\n"
+			dform += "<input type='hidden' name='_token' value='{{ csrf_token() }}'>\n"
+			dform += "</form>\n"
+			return dform
+		});
+
+		$('#model_submit').click(function(){
+			$("#grollbackform").submit();
+		});
 	});
-
-$(function(){
-	 //生成删除提交form
-    $("[data-method='put']").append(function () {
-        var dform = "\n"
-        dform += "<form action='" + $(this).attr('href') + "' method='POST' style='display:none'>\n"
-        dform += " <input type='hidden' name='_method' value='" + $(this).attr('data-method') + "'>\n"
-        if ($(this).attr('data-token')) {
-            dform += "<input type='hidden' name='_token' value='" + $(this).attr('data-token') + "'>\n"
-        }
-        dform += "</form>\n"
-        return dform
-    }).removeAttr('href').click(function(){$(this).find("form").submit(); });
-
-});
 
 
 

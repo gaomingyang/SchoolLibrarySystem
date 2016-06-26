@@ -24,7 +24,7 @@
 </div>
 
 
-<form class="form-horizontal" action="{{URL('admin/grade/dorise')}}" method="post">
+<form class="form-horizontal" action="{{URL('admin/student/dorise')}}" method="post">
     {{csrf_field()}}
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2 col-md-2">原班级</label>

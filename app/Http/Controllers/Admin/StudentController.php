@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Grade;
 use App\Squad;
 use App\Student;
+use Carbon\Carbon;
 use Redirect,Session,Validator;
 
 class StudentController extends Controller
@@ -165,25 +166,22 @@ class StudentController extends Controller
         return view('admin.student.rise.graduated',['students'=>$students,'number'=>$number]);
     }
 
-    public function ungraduated($id)
+    public function graduatedrollback($id)
     {
         $student= Student::withoutGlobalScopes()->findOrFail($id);
         if (!$student) {
             Session::flash('error','找不到此学生！');
-            return ;
+            return Redirect::back();
         }
 
-		$student->update(['graduated'=>0,'graduated_at'=>null]);
-
-        if (Student::onlyTrashed()->where('id',$id)->restore()) {
+		$rollback = Student::withoutGlobalScopes()->where('id',$id)->update(['graduated'=>0,'graduated_at'=>null]);
+        if ($rollback) {
             Session::flash('successc','恢复成功！');
-            return Redirect::to('admin/student/trashed');
+            return Redirect::to('admin/student/graduated');
         }else{
-            echo "fail";
+            Session::flash('error','恢复失败！');
+            return Redirect::back();
         }
-
     }
-
-
 
 }
