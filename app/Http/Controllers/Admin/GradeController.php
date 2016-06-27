@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Grade;
+use App\Squad;
 use App\Student;
 use Carbon\Carbon;
 use Redirect,Session,Validator,DB;
@@ -90,10 +91,11 @@ class GradeController extends Controller
     public function trashed()
     {
         $grades = Grade::onlyTrashed()->get();
-        return view('admin.grade.trashed',compact('grades'));
+        $squads = Squad::onlyTrashed()->get();
+        return view('admin.grade.trashed',compact('grades','squads'));
     }
 
-    
+
     public function seattable_create($id)
     {
         $grade = Grade::findOrFail($id);

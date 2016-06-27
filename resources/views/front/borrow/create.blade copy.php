@@ -72,16 +72,26 @@
 					<label for="" class="control-label col-xs-12 col-sm-2">班级</label>
 					<div class="col-xs-12 col-sm-10">
 						<div class="btn-toolbar " role="toolbar" aria-label="...">
-							@foreach($grades as $grade)
 							<div class="btn-group" role="group" >
-								@foreach($grade->squads as $squad)
-									@if(in_array($squad->id,$borrow_allowed_squads))
-										<a class="btn btn-default grade" squad="{{$squad->id}}">{{$squad->name}}</a>
-									@endif
-								@endforeach
+								<a class="btn btn-default grade" squad="9">五甲</a>
+								<a class="btn btn-default grade" squad="10">五乙</a>
 							</div>
-							@endforeach
-
+							<div class="btn-group">
+								<a class="btn btn-default grade" squad="7">四甲</a>
+								<a class="btn btn-default grade" squad="8">四乙</a>
+							</div>
+							<div class="btn-group">
+								<a class="btn btn-default grade" squad="5">三甲</a>
+								<a class="btn btn-default grade" squad="6">三乙</a>
+							</div>
+							<!-- <div class="btn-group">
+								<a href="" class="btn btn-default">二甲</a>
+								<a href="" class="btn btn-default">二乙</a>
+							</div>
+							<div class="btn-group">
+								<a href="" class="btn btn-default">一甲</a>
+								<a href="" class="btn btn-default">一乙</a>
+							</div> -->
 						</div>
 					</div>
 				</div>

@@ -72,6 +72,8 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
 	Route::post('student/dorise','Admin\StudentController@dorise');
 	Route::post('student/{id}/unrise','Admin\StudentController@unrise');
 
+	Route::get('grade/trashed','Admin\GradeController@trashed');
+	
 	// Route::get('grade/{id}/seattable','Admin\GradeController@seattable');
 	// Route::get('grade/{id}/seattable/create','Admin\GradeController@seattable_create');
 

@@ -84,7 +84,8 @@ class StudentController extends Controller
             Session::flash('successc', '更新成功！');
             return Redirect::to('admin/student/'.$id);
         }else{
-            return Redirect::back()->withInput()->withErrors('更新失败');
+            Session::flash('error','更新失败！');
+            return Redirect::back()->withInput();
         }
     }
 

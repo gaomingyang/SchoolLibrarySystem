@@ -2,6 +2,7 @@
 
 
 @section('content')
+@include('common.flash')
 <div class="page-header">
     <h3>修改学生信息</h3>
 </div>

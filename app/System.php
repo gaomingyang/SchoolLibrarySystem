@@ -11,7 +11,7 @@ class System extends Model
     // protected $primaryKey = null;
     // public $incrementing = false;
 
-    protected $fillable=['front_name','system_name','borrow_number_limit','borrow_days_limit'];
+    protected $fillable=['front_name','system_name','borrow_number_limit','borrow_days_limit','borrow_allowed_squads'];
     public $timestamps=false;
 
     public static function front_name(){

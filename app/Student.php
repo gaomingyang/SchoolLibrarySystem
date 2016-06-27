@@ -11,7 +11,7 @@ class Student extends Model
 {
     use SoftDeletes;
     protected $table="students";
-    protected $fillable=['id','grade_id','name','gender'];
+    protected $fillable=['id','squad_id','name','gender'];
     public $timestamps=false;
 
     protected static function boot()

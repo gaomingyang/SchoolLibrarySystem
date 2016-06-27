@@ -17,7 +17,7 @@
 	<div class="row">
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<h2 class="header">还书</h2>
-			<h3 class="sub-header">根据图书还书</h3>
+			<!-- <h3 class="sub-header">根据图书还书</h3> -->
 			<div class="form-horizontal ">
 				<div class="searchbook form-group" >
 					<label for="" class="control-label col-xs-12 col-sm-2 col-md-2">图书</label>
@@ -44,7 +44,7 @@
 
 
 
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<!-- <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 			<h3 class="sub-header">根据学生还书</h3>
 			<form class="form-horizontal ">
@@ -64,14 +64,7 @@
 								<a class="btn btn-default squad" squad="5">三甲</a>
 								<a class="btn btn-default squad" squad="6">三乙</a>
 							</div>
-							<!-- <div class="btn-group">
-								<a href="" class="btn btn-default">二甲</a>
-								<a href="" class="btn btn-default">二乙</a>
-							</div>
-							<div class="btn-group">
-								<a href="" class="btn btn-default">一甲</a>
-								<a href="" class="btn btn-default">一乙</a>
-							</div> -->
+
 						</div>
 					</div>
 				</div>
@@ -85,7 +78,7 @@
 				</div>
 
 			</form>
-		</div>
+		</div> -->
 
 
 	</div>

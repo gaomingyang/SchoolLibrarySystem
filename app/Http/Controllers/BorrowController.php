@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Grade;
+use App\Squad;
 use App\Borrow;
 use App\Student;
 use App\System;
@@ -18,7 +20,11 @@ class BorrowController extends Controller
 
     public function create()
     {
-        return view('front.borrow.create');
+        $grades = Grade::all();
+        $squads = Squad::all();
+        $system = System::first();
+        $borrow_allowed_squads = explode(',',$system->borrow_allowed_squads);
+        return view('front.borrow.create',compact('grades','borrow_allowed_squads'));
     }
 
     public function store(Request $request)
@@ -117,7 +123,7 @@ class BorrowController extends Controller
         // echo $t->toDateString();
         $delayeds = Borrow::where('borrow_time','<=',$t)->where('return_time',null)->orderBy('borrow_time','asc')->get();
         // print_r($delayeds);
-        
+
     	return view('front.borrow.borrowed',compact('borroweds','number','delayeds'));
     }
 
@@ -137,7 +143,7 @@ class BorrowController extends Controller
 
         $borroweds = Borrow::where('return_time','>',$fromdate)->orderBy('return_time', 'desc')->paginate(200);
         $number = Borrow::where('return_time','>',$fromdate)->count();
-        
+
     	return view('front.borrow.index',compact('borroweds','number','title'));
     }
 

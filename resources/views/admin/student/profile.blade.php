@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-
 @section('content')
+@include('common.flash')
 <div class="page-header">
     <h3>{{$student->name}}</h3>
 </div>

@@ -16,7 +16,7 @@ class StudentController extends Controller
 {
     public function show($id)
     {
-        $student = Student::findOrFail($id);
+        $student = Student::withoutGlobalScopes()->findOrFail($id);
         return view('front.student.profile',compact('student'));
     }
 

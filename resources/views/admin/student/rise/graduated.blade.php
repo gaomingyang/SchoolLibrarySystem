@@ -16,17 +16,19 @@
 @include('common.flash')
 <h2 class="sub-header">已毕业学生</h2>
 <div class="row">
-	<div class="col-md-4">
-		<div class="input-group">
-			<form  action="{{URL('/admin/student/graduated/search')}}" method="post">
-				{{csrf_field()}}
-				<input type="text" class="form-control" name="name" value="{{isset($keyword) ? $keyword : ''}}" placeholder="学生名">
-				<span class="input-group-btn">
-					<button type="submit" class="btn btn-default" name="button">搜索</button>
-				</span>
-			</form>
-		</div>
-	</div>
+	<!-- <div class="col-md-4">
+		<form class="form-inline" action="{{URL('/admin/student/graduated/search')}}" method="post">
+			<div class="form-group">
+				<div class="input-group">
+					{{csrf_field()}}
+					<input type="text" class="form-control" name="name" value="{{isset($keyword) ? $keyword : ''}}" placeholder="学生名">
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-default" name="button">搜索</button>
+					</span>
+			</div>
+			</div>
+		</form>
+	</div> -->
 	<div class="col-md-2">
 		<p class="form-control-static">共{{$number}}人</p>
 	</div>

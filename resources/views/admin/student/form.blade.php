@@ -1,8 +1,8 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div class="form-group">
-	<label for="grade_id" class="control-label col-md-2">所在班级</label>
+	<label for="squad_id" class="control-label col-md-2">所在班级</label>
 	<div class="col-md-2">
-		<select name="grade_id" id="" class="form-control">
+		<select name="squad_id" id="" class="form-control">
 			<option value="">班级</option>
 			@foreach($squads as $squad)
 			<option value="{{$squad->id}}"

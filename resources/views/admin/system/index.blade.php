@@ -25,12 +25,15 @@
 
     <div class="form-group">
 		<label for="" class="control-label col-xs-12 col-sm-2 col-md-2">开放借书班级</label>
-		<div class="col-xs-12 col-sm-1 col-md-1">
+		<div class="col-xs-12 col-sm-10 col-md-10">
 			@foreach($squads as $squad)
-                <label >
-                    <input type="checkbox" name="name" value="{{$squad->id}}">{{$squad->name}}
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="borrow_allowed_squads[]" value="{{$squad->id}}"
+                    @if(in_array($squad->id,$borrow_allowed_squads))
+                        checked
+                    @endif
+                    >{{$squad->name}}
                 </label>
-
             @endforeach
 		</div>
 	</div>
@@ -57,5 +60,19 @@
 	    </div>
 	</div>
 </form>
+
+@endsection
+
+
+@section('js')
+<script type="text/javascript">
+    $(function(){
+
+
+
+    });
+</script>
+
+
 
 @endsection

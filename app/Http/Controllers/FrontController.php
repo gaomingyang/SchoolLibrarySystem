@@ -38,7 +38,7 @@ class FrontController extends Controller
         {
             // echo "123";
             //非数字，可能包含学生姓名。
-            $students = Student::where('name','like','%'.$keyword.'%')->get();
+            $students = Student::withoutGlobalScopes()->where('name','like','%'.$keyword.'%')->get();
             $student_number = count($students);
             return view('front.searchresults',compact('books','keyword','book_number','students','student_number'));
         }
