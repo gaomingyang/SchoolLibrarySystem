@@ -1,4 +1,10 @@
 <?php
+// Authentication routes...
+// Route::get('/t','Auth\AuthController@t');
+Route::get('/login','Auth\AuthController@getLogin');
+Route::post('/login', 'Auth\AuthController@postLogin');
+Route::get('logout', 'Auth\AuthController@getLogout');
+
 //front
 // Route::get('/','FrontController@index');
 Route::get('/','BookController@index');
@@ -73,7 +79,7 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
 	Route::post('student/{id}/unrise','Admin\StudentController@unrise');
 
 	Route::get('grade/trashed','Admin\GradeController@trashed');
-	
+
 	// Route::get('grade/{id}/seattable','Admin\GradeController@seattable');
 	// Route::get('grade/{id}/seattable/create','Admin\GradeController@seattable_create');
 

@@ -5,18 +5,17 @@
 <p>
     <a href="/admin/user/create" class="btn btn-success">{{trans('common.create')}}</a>
 </p>
-<div class="row">
+<!-- <div class="row">
 	<div class="col-sm-1 pull-right">
 		<a href="/admin/user/trashed" class="label label-default ">{{trans('common.deleted')}}</a>
 	</div>
-</div>
+</div> -->
 
 <div class="table-responsive">
     @include('common.flash')
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>id</th>
 				<th>{{trans('user.name')}}</th>
 				<th>{{trans('user.email')}}</th>
                 <th>@lang('common.operation')</th>
@@ -26,7 +25,6 @@
 
 			@foreach($users as $u)
 			<tr>
-				<td>{{$u->id}}</td>
                 <td>{{$u->name}}</td>
 				<td>{{$u->email}}</td>
 				<td>

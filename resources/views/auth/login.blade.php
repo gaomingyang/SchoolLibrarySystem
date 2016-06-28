@@ -10,19 +10,29 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {!! csrf_field() !!}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">{{ trans('common.email') }}</label>
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">{{ trans('user.name') }}</label>
+                            <div class="col-md-6">
+                                <input type="input" class="form-control" name="name" value="{{ old('name') }}">
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
+                        <!-- <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">{{ trans('common.email') }}</label>
                             <div class="col-md-6">
                                 <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">{{trans('common.password')}}</label>
@@ -54,7 +64,7 @@
                                     <i class="fa fa-btn fa-sign-in"></i>{{trans('common.login')}}
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">{{trans('common.forgetPassword')}}?</a>
+                                <!-- <a class="btn btn-link" href="{{ url('/password/reset') }}">{{trans('common.forgetPassword')}}?</a> -->
                             </div>
                         </div>
                     </form>

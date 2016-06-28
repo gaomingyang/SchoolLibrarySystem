@@ -74,7 +74,7 @@ class UserController extends Controller
         ]);
 
         $data = $request->all();
-      
+
 
         if (!empty($data['password'])) {
             echo "have password";
@@ -89,8 +89,8 @@ class UserController extends Controller
             Session::flash('error','更新失败!');
             return Redirect::back()->withInput();
         }
-        
-        
+
+
 
     }
 

@@ -44,7 +44,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">{{ trans('common.login')}}</a></li>
+                        <!-- <li><a href="{{ url('/login') }}">{{ trans('common.login')}}</a></li> -->
                         @if(Config::get('credentials.regallowed'))
                         <li><a href="{{ url('/register') }}">{{ trans('common.register')}}</a></li>
                         @endif

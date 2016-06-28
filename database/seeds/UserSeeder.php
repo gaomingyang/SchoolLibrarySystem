@@ -15,8 +15,8 @@ class UserSeeder extends Seeder
 
 		User::create([
 			'name'=>'图书室',
-			'email'=>'tss@dashun.com',
-			'password'=>Hash::make('admin123'),
+			'email'=>'admin@admin.com',
+			'password'=>Hash::make('admin'),
 			'remember_token'=>'',
 		]);
     }

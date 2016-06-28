@@ -3,7 +3,7 @@
     <label class="col-md-4 control-label">{{trans('user.name')}}</label>
 
     <div class="col-md-6">
-        <input type="text" class="form-control" name="name" value="{{ isset($user->name) ? $user->name : '' }}" placeholder="系统内显示的名称">
+        <input type="text" class="form-control" name="name" value="{{ isset($user->name) ? $user->name : '' }}" placeholder="姓名">
 
         @if ($errors->has('name'))
             <span class="help-block">
@@ -16,7 +16,7 @@
     <label class="col-md-4 control-label">@lang('user.email')</label>
 
     <div class="col-md-6">
-        <input type="email" class="form-control" name="email" value="{{ isset($user->email) ? $user->email : '' }}" placeholder="登录帐号">
+        <input type="email" class="form-control" name="email" value="{{ isset($user->email) ? $user->email : '' }}" placeholder="邮箱">
         @if ($errors->has('email'))
             <span class="help-block">
                 <strong>{{ $errors->first('email') }}</strong>
