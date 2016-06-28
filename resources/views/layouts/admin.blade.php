@@ -65,7 +65,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="">{{ trans('common.changePassword')}}</a></li>
+                                <li><a href="/admin/user/{{Auth::user()->id}}/edit">个人信息修改</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('common.logout')}}</a></li>
                             </ul>
                         </li>
@@ -88,7 +88,7 @@
                 <li ><a href="/admin/tag">图书标签</a></li>
            </ul>
            <ul class="nav nav-sidebar">
-               <li><a href="/admin/borrowed">借出书单</a></li>
+               <li><a href="/admin/borrowed">未还书单</a></li>
                <li><a href="/admin/returned">已还书单</a></li>
                <li><a href="/admin/borrowlog">借书记录</a></li>
            </ul>

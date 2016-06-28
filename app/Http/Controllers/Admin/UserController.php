@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 
-use Validator,Redirect,Session;
+use Validator,Redirect,Session,Hash;
 
 class UserController extends Controller
 {
@@ -46,14 +46,16 @@ class UserController extends Controller
             'name' => 'required',
             'email'=>'required|email',
             'password'=>'required',
-            'password_confirmation'=>'required',
+            // 'password_confirmation'=>'required',
         ]);
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
 
-        if (User::create($request->all())) {
-            Session::flash('success', '新增成功!');
+        if (User::create($data)) {
+            Session::flash('successc', '新增成功!');
             return Redirect::to('admin/user');
         }else{
-            Session::flash('success', '新增失败!');
+            Session::flash('error', '新增失败!');
             return Redirect::back()->withInput();
         }
     }
@@ -66,7 +68,28 @@ class UserController extends Controller
 
     public function update(Request $request,$id)
     {
-        $user = User::findOrFail($id);
+        $this->validate($request,[
+            'name' => 'required',
+            'email'=>'required|email',
+        ]);
+
+        $data = $request->all();
+      
+
+        if (!empty($data['password'])) {
+            echo "have password";
+            $data['password'] = Hash::make($data['password']);
+        }
+
+        try{
+            User::find($id)->update($data);
+            Session::flash('successc'   ,'更新成功!');
+            return Redirect::back();
+        } catch (\Exception $e){
+            Session::flash('error','更新失败!');
+            return Redirect::back()->withInput();
+        }
+        
         
 
     }

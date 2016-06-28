@@ -6,8 +6,7 @@
 </div>
 
 <form action="{{ url('/admin/user') }}" method="post" class="form-horizontal">
-	@include('admin.user.form1')
-	@include('admin.user.form2')
+	@include('admin.user.form')
 	<div class="form-group">
         <div class="col-md-6 col-md-offset-4">
             <button type="submit" class="btn btn-primary">

@@ -24,13 +24,13 @@
     <table class="table">
         <tr>
             <th>名称</th>
-            <th>操作</th>
+            <!-- <th>操作</th> -->
         </tr>
 
         @foreach($grades as $grade)
         <tr>
             <td>{{$grade->name}}</td>
-            <td></td>
+            <!-- <td></td> -->
         </tr>
         @endforeach
 
@@ -43,13 +43,13 @@
     <table class="table">
         <tr>
             <th>名称</th>
-            <th>操作</th>
+            <!-- <th>操作</th> -->
         </tr>
 
-        @foreach($squads as $grade)
+        @foreach($squads as $squad)
         <tr>
             <td>{{$squad->name}}</td>
-            <td></td>
+            <!-- <td></td> -->
         </tr>
         @endforeach
 

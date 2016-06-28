@@ -24,7 +24,7 @@ class BorrowController extends Controller
     public function borrowlog()
     {
         $borroweds = Borrow::orderBy('id', 'desc')->paginate(50);
-        $number = $borroweds->count();
+        $number = Borrow::count();
         $title = '借书记录';
     	return view('admin.borrow.index',compact('borroweds','title','number'));
     }
@@ -32,8 +32,8 @@ class BorrowController extends Controller
     public function borrowed()
     {
         $borroweds = Borrow::where('return_time',null)->orderBy('id', 'desc')->paginate(50);
-        $number = $borroweds->count();
-        $title = '借出书单';
+        $number = Borrow::where('return_time',null)->count();
+        $title = '未还书单';
     	return view('admin.borrow.index',compact('borroweds','number','title'));
     }
 
