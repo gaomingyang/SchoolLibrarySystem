@@ -6,8 +6,10 @@
             <option value="0">请选择</option>
 			@foreach($grades as $grade)
             <option value="{{$grade->id}}"
-				@if($grade->id == $squad->grade->id)
-				selected
+				@if(isset($squad))
+					@if($grade->id == $squad->grade->id)
+					selected
+					@endif
 				@endif
 				>{{$grade->name}}</option>
 			@endforeach

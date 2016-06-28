@@ -57,4 +57,11 @@
 
 @section('js')
 <script src="{{ asset('js/dform.js') }}"></script>
+<script type="text/javascript">
+	$(".modal").on('show.bs.modal',function(event){
+		var name = '{{$squad->name}}';
+		var modal = $(this);
+		modal.find('.squadName').text(name);
+	});
+</script>
 @endsection

@@ -103,7 +103,7 @@
 		$("#gr_student").append(function () {
 			var dform = "\n"
 			dform += "<form id='grollbackform' action='" + url + "' method='POST' style='display:none'>\n"
-			dform += " <input type='hidden' name='_method' value='put'>\n"
+			dform += "<input type='hidden' name='_method' value='put'>\n"
 			dform += "<input type='hidden' name='_token' value='{{ csrf_token() }}'>\n"
 			dform += "</form>\n"
 			return dform
