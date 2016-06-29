@@ -39,7 +39,7 @@ class SystemController extends Controller
             return Redirect::back()->withInput();
         }
 
-        Session::flash('success', '设置成功!');
+        Session::flash('successc', '设置成功!');
         return Redirect::back()->withInput();
     }
 

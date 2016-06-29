@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Illuminate\Http\Request;
-use Auth,Validator,Redirect;
+use Auth,Validator,Redirect,Lang;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -183,9 +183,7 @@ class AuthController extends Controller
          */
         protected function getFailedLoginMessage()
         {
-            return Lang::has('auth.failed')
-                    ? Lang::get('auth.failed')
-                    : 'These credentials do not match our records.';
+            return "账号或密码错误";
         }
 
         /**
