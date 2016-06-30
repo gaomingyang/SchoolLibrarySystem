@@ -1,7 +1,15 @@
 @extends('layouts.front')
 
+@section('css')
+<link rel="stylesheet" href="/css/jquery-ui.css">
+@endsection
+
 @section('content')
 <div class="container">
+	<div class="row">
+		<p>时间：从 <input type="text" class="dp"> 到 <input type="text" class="dp"> </p>
+	</div>
+
 
 	@if(isset($students))
 	<div class="page-header">
@@ -82,5 +90,16 @@
 
 
 @section('js')
-
+<script src="/js/jquery-ui.js"></script>
+<script type="text/javascript">
+	$( ".dp" ).datepicker({
+		yearRange: "2015:2100",
+	});
+$.datepicker.setDefaults({
+  showOn: "both",
+  buttonImageOnly: true,
+  buttonImage: "calendar.gif",
+  buttonText: "Calendar"
+});
+</script>
 @endsection

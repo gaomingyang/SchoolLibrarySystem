@@ -8,7 +8,7 @@
 <div class="container-fluid">
   <div class="row">
        @if(isset($tags))
-      <div class="col-sm-10 col-sm-offset-1 main">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1 main">
           <strong>标签:</strong>
           @foreach($tags as $tag)
             <a href="/tag/{{$tag->id}}" class="btn btn-xs btn-info">{{$tag->name}}
@@ -19,7 +19,7 @@
       @endif
 
 
-		<div class="col-sm-10 col-sm-offset-1  main">
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1  main">
 		<!-- 	<h1 class="page-header">图书列表</h1>
       <h2 class="sub-header">图书清单</h2> -->
       共有 {{$book_number}} 本书
