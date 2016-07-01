@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Book;
 use App\Borrow;
 use App\Student;
+use App\System;
 use Redirect,DB;
 class FrontController extends Controller
 {
@@ -48,9 +49,12 @@ class FrontController extends Controller
     //ranking list
     public function ranks()
     {
+        $fromdate = System::first()->rank_from_date ?  System::first()->rank_from_date : '2016-01-01';
+
+
         //students
         // $studentRank = Borrow::all()->groupBy('student_id')->orderBy('')->get();
-        $students = DB::table('borrow')->select('student_id',DB::raw('count(*) as total'))->groupBy('student_id')->orderBy('total','desc')->limit(10)->get();
+        $students = DB::table('borrow')->select('student_id',DB::raw('count(*) as total'))->groupBy('student_id')->where('borrow_time','>',$fromdate)->orderBy('total','desc')->limit(10)->get();
         foreach ($students as $key => $s) {
             $student = Student::findOrFail($s->student_id);
             $s->student = $student;
@@ -59,14 +63,14 @@ class FrontController extends Controller
 
         //books && booksort
 
-        $books = DB::table('borrow')->select('book_id',DB::raw('count(*) as total'))->groupBy('book_id')->orderBy('total','desc')->limit(20)->get();
+        $books = DB::table('borrow')->select('book_id',DB::raw('count(*) as total'))->groupBy('book_id')->where('borrow_time','>',$fromdate)->orderBy('total','desc')->limit(20)->get();
         foreach ($books as $key => $b) {
             $b->book = Book::findOrFail($b->book_id);
         }
 
 
         //bookCategories
-        $booklists = DB::table('borrow')->select(DB::raw('distinct book_id'))->get();
+        $booklists = DB::table('borrow')->select(DB::raw('distinct book_id'))->where('borrow_time','>',$fromdate)->get();
         $bookCategories = array();
         $keys = array();
         $sum = 0;
@@ -97,7 +101,7 @@ class FrontController extends Controller
         // print_r($bookCategories);
         // echo "</pre>";
         // exit;
-        return view('front.ranks',compact('students','books','bookCategories'));
+        return view('front.ranks',compact('fromdate','students','books','bookCategories'));
     }
 
     public function studentrank()
@@ -121,11 +125,17 @@ class FrontController extends Controller
         return view('front.ranks',compact('books'));
     }
 
-
-
-
-
-
+    public function updatefromdate(Request $request)
+    {
+        $fromdate = $request->fromdate;
+        $system = System::first();
+        $update = $system->update(['rank_from_date'=>$fromdate]);
+        if($update){
+            return 'success';
+        }else{
+            return null;
+        }
+    }
 
 
 

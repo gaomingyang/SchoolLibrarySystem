@@ -46,7 +46,7 @@ Route::get('tag/{id}','TagController@show');
 Route::get('ranks','FrontController@ranks');
 Route::get('rank/student','FrontController@studentrank');
 Route::get('rank/book','FrontController@bookrank');
-
+Route::post('/updatefromdate','FrontController@updatefromdate');
 
 //后台   登记图书和学生信息，借书、还书的信息修改。
 // Route::group(['middleware'=>['auth'],'prefix'=>'admin'],function(){

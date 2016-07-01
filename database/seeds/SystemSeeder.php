@@ -18,6 +18,8 @@ class SystemSeeder extends Seeder
 			'system_name'=>'图书管理系统',
 			'borrow_number_limit'=>'2',
 			'borrow_days_limit'=>'7',
+			'borrow_allowed_squads'=>'7',
+			'rank_from_date'=>'2016-03-01',
 		]);
     }
 }

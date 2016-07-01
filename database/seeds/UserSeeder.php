@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
         DB::table('users')->truncate();
 
 		User::create([
-			'name'=>'图书室',
+			'name'=>'admin',
 			'email'=>'admin@admin.com',
 			'password'=>Hash::make('admin'),
 			'remember_token'=>'',
