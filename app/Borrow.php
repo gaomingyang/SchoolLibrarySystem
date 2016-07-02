@@ -13,7 +13,7 @@ class Borrow extends Model
 
     public function book()
     {
-    	return $this->belongsTo(Book::class);
+    	return $this->belongsTo('App\Book')->withTrashed();
     }
 
     public function student()

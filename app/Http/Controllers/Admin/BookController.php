@@ -71,18 +71,18 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $book=Book::findOrFail($id);
+        $book=Book::withTrashed()->findOrFail($id);
         return view('admin.book.profile',compact('book'));
     }
 
     public function edit($id)
     {
-        return view('admin.book.edit',['book'=>Book::findOrFail($id),'categories'=>Category::all()] );
+        return view('admin.book.edit',['book'=>Book::withTrashed()->findOrFail($id),'categories'=>Category::all()] );
     }
 
     public function update(Request $request, $id)
     {
-        $book = Book::findOrFail($id);
+        $book = Book::withTrashed()->findOrFail($id);
         $data = $request->all();
 
         // $picture = $request->file('picture');

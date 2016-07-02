@@ -18,7 +18,7 @@
 			<th>数目</th>
 			<th>备注</th>
 			<th>删除时间</th>
-			<th>操作</th>
+			<!--<th>操作</th>-->
 		</tr>
 	</thead>
 	<tbody>
@@ -31,7 +31,7 @@
 			<td>{{$b->number}}</td>
 			<td>{{$b->comment}}</td>
 			<td>{{$b->deleted_at}}</td>
-			<td><a href="#">恢复</a></td>
+			<!--<td><a href="#">恢复</a></td>-->
 		</tr>
 		@endforeach
 	</tbody>

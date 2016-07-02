@@ -26,7 +26,6 @@
 <script type="text/javascript" src="{{ asset('/bootstrap/plugin/tokenfield/bootstrap-tokenfield.js ') }}" ></script>
 <script type="text/javascript">
 
-    var aaa = '123';
     $('#tags').tokenfield({
         autocomplete: {
             source: <?php echo App\Tag::getTagsString()?>,
@@ -34,7 +33,7 @@
         },
         showAutocompleteOnFocus: !0,
         delimiter: [","],
-        tokens: <?php echo  App\Book::find($book->id)->tagNameString() ?>
+        tokens: <?php echo  App\Book::withTrashed()->find($book->id)->tagNameString() ?>
     })
 
 	$(function(){
