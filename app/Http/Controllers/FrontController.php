@@ -65,7 +65,7 @@ class FrontController extends Controller
 
         $books = DB::table('borrow')->select('book_id',DB::raw('count(*) as total'))->groupBy('book_id')->where('borrow_time','>',$fromdate)->orderBy('total','desc')->limit(20)->get();
         foreach ($books as $key => $b) {
-            $b->book = Book::findOrFail($b->book_id);
+            $b->book = Book::withTrashed()->findOrFail($b->book_id);
         }
 
 
@@ -76,7 +76,7 @@ class FrontController extends Controller
         $sum = 0;
 
         foreach ($booklists as $key => $b) {
-            $bookinfo = Book::findOrFail($b->book_id);
+            $bookinfo = Book::withTrashed()->findOrFail($b->book_id);
             $category_id =$bookinfo->category_id;
 
             if (!in_array($category_id, $keys)) {

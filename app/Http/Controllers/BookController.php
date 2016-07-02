@@ -27,14 +27,14 @@ class BookController extends Controller
     //图书详情
     public function show($id)
     {
-    	$book=Book::findOrFail($id);
+    	$book=Book::withTrashed()->findOrFail($id);
         return view('front.book.book',compact('book'));
     }
 
     public function borrowinfo($keyword)
     {
 
-        $allbooks = Book::where('id','=',$keyword)->orwhere('name','LIKE','%'.$keyword.'%') ->get();
+        $allbooks = Book::withTrashed()->where('id','=',$keyword)->orwhere('name','LIKE','%'.$keyword.'%') ->get();
         $books = array();
         foreach ($allbooks as $key => $book) {
             // print_r($book->id);
