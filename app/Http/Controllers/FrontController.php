@@ -56,7 +56,7 @@ class FrontController extends Controller
         // $studentRank = Borrow::all()->groupBy('student_id')->orderBy('')->get();
         $students = DB::table('borrow')->select('student_id',DB::raw('count(*) as total'))->groupBy('student_id')->where('borrow_time','>',$fromdate)->orderBy('total','desc')->limit(10)->get();
         foreach ($students as $key => $s) {
-            $student = Student::findOrFail($s->student_id);
+            $student = Student::withoutGlobalScopes()->findOrFail($s->student_id);
             $s->student = $student;
         }
 

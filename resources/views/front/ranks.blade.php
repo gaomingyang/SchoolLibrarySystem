@@ -135,7 +135,7 @@ $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 //   buttonImage: "calendar.gif",
 //   buttonText: "Calendar"
 // });
-// $.datepicker.formatDate( "yy-mm-dd", new Date( 2007, 1 - 1, 26 ) );
+
 	$( ".dp" ).datepicker({
 		yearRange: "2015:2100",
 		dateFormat:"yy-mm-dd",
