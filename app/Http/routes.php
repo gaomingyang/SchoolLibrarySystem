@@ -80,8 +80,8 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
 
 	Route::get('grade/trashed','Admin\GradeController@trashed');
 
-	// Route::get('grade/{id}/seattable','Admin\GradeController@seattable');
-	// Route::get('grade/{id}/seattable/create','Admin\GradeController@seattable_create');
+	// Route::get('squad/{id}/seattable','Admin\GradeController@seattable');
+	// Route::get('squad/{id}/seattable/create','Admin\SquadController@seattable_create');
 
 	//管理员 变更密码
 	Route::get('user/{id}/password','Admin\UserController@password');
