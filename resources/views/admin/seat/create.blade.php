@@ -5,9 +5,9 @@
 <div class="page-header">
     <h3>新建座位表</h3>
 </div>
-<h4>学生{{$grade->students->count()}}人</h4>
+<h4>学生{{$squad->students->count()}}人</h4>
 
-@foreach($grade->students as $student)
+@foreach($squad->students as $student)
     <a href="/admin/student/{{$student->id}}" class="btn
         @if($student->gender == 1)
             btn-info
@@ -26,7 +26,7 @@
     	<div class="col-xs-12 col-sm-4 col-md-4">
     		<label class="radio-inline"><input type="radio" name="tabletype" value="2" checked>两人一桌</label>
     		<label class="radio-inline"><input type="radio" name="tabletype" value="1">一人一桌</label>
-            <label class="radio-inline"><input type="radio" name="tabletype" value="3" value="">自定义</label>
+            <!-- <label class="radio-inline"><input type="radio" name="tabletype" value="3" value="">自定义</label> -->
     	</div>
     </div>
     <div class="form-group">
@@ -46,7 +46,7 @@
             <span class="">默认两人一桌，分为4列，可根据班级情况自行调整。</span>
         </div>
     </div>
-    <input type="hidden" id="stuNum" name="number" value="{{$grade->students->count()}}">
+    <input type="hidden" id="stuNum" name="number" value="{{$squad->students->count()}}">
 </form>
 
 <h4>座位表预览</h4>
@@ -64,7 +64,7 @@
 <script type="text/javascript">
 $(function(){
     var stuNum = $("#stuNum").val();
-    var column =
+    var column = '';
 
 });
 

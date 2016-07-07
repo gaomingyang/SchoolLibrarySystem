@@ -87,12 +87,16 @@ Route::group(['middleware' => 'web','prefix'=>'admin'], function () {
 	Route::get('user/{id}/password','Admin\UserController@password');
 
 
+	Route::get('squad/{id}/createseat','Admin\SeatController@create');
+
+
     Route::resource('user','Admin\UserController');
     Route::resource('book','Admin\BookController');
 	Route::resource('category','Admin\CategoryController');
 	Route::resource('tag','Admin\TagController');
     Route::resource('grade','Admin\GradeController');
     Route::resource('squad','Admin\SquadController');
+    Route::resource('seat','Admin\SeatController');
     Route::resource('student','Admin\StudentController');
 
     Route::resource('system','Admin\SystemController',['only'=>['index','update']]);
