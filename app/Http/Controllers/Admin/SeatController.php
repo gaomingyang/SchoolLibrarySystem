@@ -16,5 +16,15 @@ class SeatController extends Controller
         return view('admin.seat.create',compact('squad'));
     }
 
+    public function store($id,Request $request)
+    {
+
+    }
+
+    public function edit()
+    {
+        
+    }
+
 
 }
