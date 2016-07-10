@@ -22,9 +22,10 @@ class Squad extends Model
         return $this->hasMany('App\Student');
     }
 
+    //hasOne  hasMany
     public function seat()
     {
-        return $this->hasMany('App\Seat');
+        return $this->hasOne('App\Seat');
     }
 
 }

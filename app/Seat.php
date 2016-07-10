@@ -17,5 +17,9 @@ class Seat extends Model
         return $this->belongsTo('App\Squad');
     }
 
+    public function students()
+    {
+        return $this->hasMany('App\Student');
+    }
 
 }
