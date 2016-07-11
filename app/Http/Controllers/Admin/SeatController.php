@@ -32,5 +32,7 @@ class SeatController extends Controller
 		return view('admin.seat.edit',compact('squad'));
     }
 
+    
+
 
 }
