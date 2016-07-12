@@ -32,14 +32,17 @@
     <div class="form-group">
     	<label for="mark" class="control-label col-xs-12 col-sm-2 col-md-2">行列分布</label>
     	<span class="col-xs-5 col-sm-2 col-md-2">
-    		<input type="text" class="form-control row" name="row" placeholder="行">
+    		<input type="text" class="form-control" name="row" placeholder="行" id="rowNum" value="8">
     	</span>
         <div class="col-xs-1 col-sm-1 col-md-1">
             x
         </div>
         <span class="col-xs-5 col-sm-2 col-md-2">
-    		<input type="text" class="form-control col" name="column" placeholder="列" value="4">
+    		<input type="text" class="form-control col" name="column" placeholder="列" id="colNum" value="4">
     	</span>
+        <span class="col-xs-1 col-sm-1 col-md-1">
+            <button type="button" name="button" class="btn btn-default" id="makeSeatBtn">生成</button>
+        </span>
     </div>
     <div class="form-group">
         <div class="col-xs-12 col-md-10 col-md-offset-2">
@@ -51,7 +54,7 @@
 
 <h4>座位表预览</h4>
 <div id="seat">
-    
+
 
 
 
@@ -68,10 +71,15 @@
 <script type="text/javascript">
 $(function(){
     var stuNum = $("#stuNum").val();
-    var row = $(".row").val();
-    var col = $(".col").val();
+    var row = $("#rowNum").val();
+    var col = $("#colNum").val();
 
+    $("#makeSeatBtn").click(function(){
+        // alert(stuNum);
+        // alert(row);
+        // alert(col);
 
+    });
 
 
 });
