@@ -55,13 +55,7 @@
 <h4>座位表预览</h4>
 <div id="seat">
 
-
-
-
-
 </div>
-
-
 
 
 @endsection
