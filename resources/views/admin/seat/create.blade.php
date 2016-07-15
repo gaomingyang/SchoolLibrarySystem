@@ -5,13 +5,29 @@
 .btn{
     min-width: 68px;
 }
-#seat{
+#seatmap{
     border:3px dashed #ccc;
     min-height: 400px;
+    min-width: 800px;
 }
 .students{
     margin-bottom: 80px;
 }
+[id^="seat"]{
+    width:70px;
+    height:35px;
+    float:left;
+    border:1px solid #aaa;
+    margin:5px;
+}
+[id^='seat']:nth-child(odd){
+    margin-right:0px;
+}
+[id^='seat']:nth-child(even){
+    margin-left:0px;
+}
+
+
 </style>
 @endsection
 
@@ -54,13 +70,40 @@
 </form>
 
 <h4>座位表预览</h4>
-<div id="seat">
+<div id="seatmap" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="seat1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+    <div id="seat5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <br>
+    <div class="" style="clear:both"></div>
+
+    <div id="seat9"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat10" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat11" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat12" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat13" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat14" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat15" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="seat16" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+
+
+
+
+
 
 </div>
 <h4>学生{{$squad->students->count()}}人</h4>
 <div class="students">
     @foreach($squad->students as $key => $student)
-        <a href="/admin/student/{{$student->id}}" class="btn
+        <a href="/admin/student/{{$student->id}}" draggable="true" ondragstart="drag(event)"
+            id="stu{{$student->id}}" class="btn
             @if($student->gender == 1)
                 btn-info
             @elseif($student->gender == 2)
@@ -95,7 +138,17 @@ $(function(){
 
 });
 
-
+function drag(ev){
+    ev.dataTransfer.setData("Text",ev.target.id);
+}
+function allowDrop(ev){
+    ev.preventDefault();
+}
+function drop(ev){
+    ev.preventDefault();
+    var data=ev.dataTransfer.getData("Text");
+    ev.target.appendChild(document.getElementById(data));
+}
 
 function print(){
 
