@@ -8,9 +8,14 @@
 #seatmap{
     border:3px dashed #ccc;
     min-height: 400px;
-    min-width: 800px;
+    min-width: 600px;
+    position: relative;
 }
-.students{
+#students{
+    border:3px dashed #ccc;
+
+}
+.seatrow{
     margin-bottom: 80px;
 }
 [id^="seat"]{
@@ -26,7 +31,28 @@
 [id^='seat']:nth-child(even){
     margin-left:0px;
 }
-
+.seatheader{
+    position: absolute;
+    top:20px;
+    width: 100%;
+}
+.seatheader>label,.seatfooter>label{
+    text-align: center;
+    width:100%;
+}
+.seatcontent{
+    margin-top: 50px;
+    /*background-color: #ccc;*/
+    display: block;
+}
+.seatfooter{
+    float:left;
+    position: absolute;;
+    bottom:10px;
+    width:100%;
+    margin:10px auto;
+    margin-bottom:10px;
+}
 
 </style>
 @endsection
@@ -36,9 +62,19 @@
     <h3>新建座位表</h3>
 </div>
 
-
 <h4>座位表布局设置</h4>
-<form class="form-horizontal" action="" method="post">
+<div class="form-horizontal">
+
+    <div class="form-group">
+        <label for="" class="control-label col-xs-12 col-sm-2 xol-md-2">学生人数</label>
+        <label for="" class="control-label">{{$squad->students->count()}}人</label>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label col-xs-12 col-sm-2 col-md-2">名称</label>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <input type="text" name="name" value="" class="form-control" placeholder="座表名称">
+        </div>
+    </div>
     <div class="form-group">
     	<label for="mark" class="control-label col-xs-12 col-sm-2 col-md-2">座位类型</label>
     	<div class="col-xs-12 col-sm-4 col-md-4">
@@ -67,57 +103,51 @@
         </div>
     </div>
     <input type="hidden" id="stuNum" name="number" value="{{$squad->students->count()}}">
-</form>
 
+</div>
 <h4>座位表预览</h4>
-<div id="seatmap" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <div id="seat1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-8" id="seatmap">
+        <div  ondrop="drop(event)" ondragover="allowDrop(event)" >
+            <div class="seatheader">
+                <label for="">讲台</label>
+            </div>
 
-    <div id="seat5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat6" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat7" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat8" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <br>
-    <div class="" style="clear:both"></div>
+            <div class="seatcontent">
+                <div id="seat1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="seat2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="seat3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="seat4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
-    <div id="seat9"  ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat10" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat11" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat12" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat13" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat14" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat15" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div id="seat16" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>
 
+            <div class="seatfooter">
+                <label for="">教室后方</label>
+            </div>
 
+        </div>
+    </div>
 
-
-
-
+    <div id="students"   ondrop="drop(event)" ondragover="allowDrop(event)" class="col-xs-12 col-sm-4 col-md-4">
+        <h3>候选区</h3>
+        @foreach($squad->students as $key => $student)
+            <a href="/admin/student/{{$student->id}}" draggable="true" ondragstart="drag(event)"
+                id="stu{{$student->id}}" class="btn
+                @if($student->gender == 1)
+                    btn-info
+                @elseif($student->gender == 2)
+                    btn-warning
+                @else
+                    btn-default
+                @endif
+                ">{{$student->name}}</a>
+                <!-- @if(($key+1)%10 == 0)
+                <br>
+                @endif -->
+        @endforeach
+    </div>
 
 </div>
-<h4>学生{{$squad->students->count()}}人</h4>
-<div class="students">
-    @foreach($squad->students as $key => $student)
-        <a href="/admin/student/{{$student->id}}" draggable="true" ondragstart="drag(event)"
-            id="stu{{$student->id}}" class="btn
-            @if($student->gender == 1)
-                btn-info
-            @elseif($student->gender == 2)
-                btn-warning
-            @else
-                btn-default
-            @endif
-            ">{{$student->name}}</a>
-            @if(($key+1)%10 == 0)
-            <br>
-            @endif
-    @endforeach
-</div>
-
 
 @endsection
 
