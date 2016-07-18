@@ -65,7 +65,6 @@
 
 <h4>座位表布局设置</h4>
 <div class="form-horizontal">
-
     <div class="form-group">
         <label for="" class="control-label col-xs-12 col-sm-2 xol-md-2">学生人数</label>
         <div class="col-xs-12 col-sm-6 col-md-6">
@@ -105,7 +104,7 @@
     <div class="form-group">
         <label for="" class="control-label col-xs-12 col-sm-2 col-md-2">名称</label>
         <div class="col-xs-12 col-sm-6 col-md-6">
-            <input type="text" name="name" value="" class="form-control" placeholder="座表名称">
+            <input type="text" name="name" value="{{$squad->name}}班座位表" class="form-control" placeholder="座表名称">
         </div>
     </div>
 
@@ -114,20 +113,9 @@
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-8" id="seatmap">
         <div  ondrop="drop(event)" ondragover="allowDrop(event)" >
-            <div class="seatheader">
-                <label for="">讲台</label>
-            </div>
-
-            <div class="seatcontent">
-                
-
-
-            </div>
-
-            <div class="seatfooter">
-                <label for="">教室后方</label>
-            </div>
-
+            <div class="seatheader"><label for="">讲台</label></div>
+            <div class="seatcontent"></div>
+            <div class="seatfooter"><label for="">教室后方</label></div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4" id="students">
@@ -150,8 +138,6 @@
             @endforeach
         </div>
     </div>
-
-
 </div>
 
 @endsection
@@ -173,9 +159,9 @@ $(function(){
             alert('座位数不够学生数目！');
         }
 
-
+        $(".seatcontent").html('');
         for (var i = 1; i <= seatnum ; i++) {
-            $('<div id="seat'+i+'" ondrop="drop(event)" ondragover="allowDrop(event)"></div>').appendTo(".seatcontent");
+            $('<div id="seat'+i+'" ondrop="drop(event)" ondragover="allowDrop(event)" ></div>').appendTo(".seatcontent");
         }
 
 
