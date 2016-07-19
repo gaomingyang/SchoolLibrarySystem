@@ -7,10 +7,35 @@
 }
 #seatmap{
     border:3px dashed #ccc;
-    min-height: 400px;
+    min-height: 300px;
     min-width: 650px;
-    position: relative;
+    /*position: relative;*/
+    float:left;
     /*border-collapse:collapse;*/
+}
+.seatfooter{
+    position: relative;
+    top:17px;
+    /*padding-top: 10px*/
+    width: 100%;
+}
+.seatheader>label,.seatfooter>label{
+    text-align: center;
+    width:100%;
+}
+.seatcontent{
+    margin-top: 20px;
+    /*background-color: #ccc;*/
+    display: block;
+    min-height: 200px;
+}
+.seatheader{
+    float:left;
+    position: relative;
+    bottom:10px;
+    width:100%;
+    margin:10px auto;
+    /*margin-bottom:10px;*/
 }
 #students{
     border:3px dashed #ccc;
@@ -32,28 +57,7 @@
 [id^='seat']:nth-child(even){
     margin-left:0px;
 }
-.seatheader{
-    position: absolute;
-    top:20px;
-    width: 100%;
-}
-.seatheader>label,.seatfooter>label{
-    text-align: center;
-    width:100%;
-}
-.seatcontent{
-    margin-top: 50px;
-    /*background-color: #ccc;*/
-    display: block;
-}
-.seatfooter{
-    float:left;
-    position: absolute;;
-    bottom:10px;
-    width:100%;
-    margin:10px auto;
-    margin-bottom:10px;
-}
+
 
 </style>
 @endsection
@@ -83,10 +87,10 @@
     <div class="form-group">
     	<label for="mark" class="control-label col-xs-12 col-sm-2 col-md-2">行列分布</label>
     	<span class="col-xs-1 col-sm-1 col-md-1">
-    		<input type="text" class="form-control" name="row" placeholder="行" id="rowNum" value="8">
+    		<input type="text" class="form-control" name="row" placeholder="行" id="rowNum" value="4">
     	</span>
         <span class="col-xs-1 col-sm-1 col-md-1">
-    		<input type="text" class="form-control col" name="column" placeholder="列" id="colNum" value="4">
+    		<input type="text" class="form-control col" name="column" placeholder="列" id="colNum" value="8">
     	</span>
         <span class="col-xs-3 col-sm-3 col-md-3">
             <button type="button" name="button" class="btn btn-default" id="makeSeatBtn">生成</button>
@@ -113,9 +117,12 @@
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-8" id="seatmap">
         <div  ondrop="drop(event)" ondragover="allowDrop(event)" >
-            <div class="seatheader"><label for="">讲台</label></div>
-            <div class="seatcontent"></div>
             <div class="seatfooter"><label for="">教室后方</label></div>
+            <div class="seatcontent"></div>
+            <div class="seatheader"><label for="">讲台</label></div>
+            <div class="" style="clear:both;">
+
+            </div>
         </div>
     </div>
     <div class="col-xs-12 col-sm-4 col-md-4" id="students">

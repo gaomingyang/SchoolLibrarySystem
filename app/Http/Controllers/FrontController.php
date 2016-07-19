@@ -106,12 +106,14 @@ class FrontController extends Controller
 
     public function studentrank()
     {
+        $fromdate = System::first()->rank_from_date ?  System::first()->rank_from_date : '2016-01-01';
+
         $students = DB::table('borrow')->select('student_id',DB::raw('count(*) as total'))->groupBy('student_id')->orderBy('total','desc')->get();
         foreach ($students as $key => $s) {
             $student = Student::findOrFail($s->student_id);
             $s->student = $student;
         }
-        return view('front.ranks',compact('students'));
+        return view('front.ranks',compact('students','fromdate'));
 
 
     }
@@ -120,9 +122,11 @@ class FrontController extends Controller
     {
         $books = DB::table('borrow')->select('book_id',DB::raw('count(*) as total'))->groupBy('book_id')->orderBy('total','desc')->get();
         foreach ($books as $key => $b) {
-            $b->book = Book::findOrFail($b->book_id);
+            $b->book = Book::withTrashed()->findOrFail($b->book_id);
         }
-        return view('front.ranks',compact('books'));
+        $fromdate = System::first()->rank_from_date ?  System::first()->rank_from_date : '2016-01-01';
+
+        return view('front.ranks',compact('books','fromdate'));
     }
 
     public function updatefromdate(Request $request)
