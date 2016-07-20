@@ -95,7 +95,8 @@
         <span class="col-xs-3 col-sm-3 col-md-3">
             <button type="button" name="button" class="btn btn-default" id="makeSeatBtn">生成</button>
             <button type="button" name="button" class="btn btn-default" >预览</button>
-            <button type="button" name="button" class="btn btn-default" onclick="print();">打印</button>
+            <button type="button" class="btn btn-default" onclick="p();">打印</button>
+
         </span>
     </div>
 
@@ -113,7 +114,7 @@
     </div>
 
 </div>
-<h4>座位表预览</h4>
+<h4 >座位表预览</h4>
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-8" id="seatmap">
         <div  ondrop="drop(event)" ondragover="allowDrop(event)" >
@@ -129,7 +130,7 @@
         <div ondrop="drop(event)" ondragover="allowDrop(event)" class="">
             <h3>候选区</h3>
             @foreach($squad->students as $key => $student)
-                <a href="/admin/student/{{$student->id}}" draggable="true" ondragstart="drag(event)"
+                <button draggable="true" ondragstart="drag(event)"
                     id="stu{{$student->id}}" class="btn
                     @if($student->gender == 1)
                         btn-info
@@ -138,7 +139,7 @@
                     @else
                         btn-default
                     @endif
-                    ">{{$student->name}}</a>
+                    ">{{$student->name}}</button>
                     <!-- @if(($key+1)%10 == 0)
                     <br>
                     @endif -->
@@ -172,8 +173,6 @@ $(function(){
         }
 
 
-
-
     });
 
 
@@ -191,8 +190,8 @@ function drop(ev){
     ev.target.appendChild(document.getElementById(data));
 }
 
-function print(){
-
+function p(){
+    window.print();
 }
 
 </script>
